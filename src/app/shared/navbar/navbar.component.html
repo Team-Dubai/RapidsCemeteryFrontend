@@ -10,12 +10,16 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/tour" routerLinkActive="active">Take a Cemetery Tour</a>
+      <li ngbDropdown class="nav-item dropdown" role="button" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownOne" ngbDropdownToggle>Cemetery Tour</a>
+        <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownOne">
+          <a class="dropdown-item" routerLink="/tour/walking">Walking Tour</a>
+          <a class="dropdown-item" routerLink="/tour/information">Informational Tour</a>
+        </div>
       </li>
       <li ngbDropdown class="nav-item dropdown" role="button" routerLinkActive="active">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" ngbDropdownToggle>History</a>
-        <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownTwo" ngbDropdownToggle>History</a>
+        <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownTwo">
           <a class="dropdown-item" routerLink="/history/plot">Loomis Cemetery Plot Map</a>
           <a class="dropdown-item" routerLink="/history/timeline">Timeline</a>
           <a class="dropdown-item" routerLink="/history/burials">Complete List of Burials</a>

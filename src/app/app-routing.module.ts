@@ -7,8 +7,12 @@ const routes: Routes = [
     loadChildren: './modules/home/home.module#HomeModule'
   },
   {
-    path: 'tour',
+    path: 'tour/walking',
     loadChildren: './modules/tour/tour.module#TourModule'
+  },
+  {
+    path: 'tour/information',
+    loadChildren: './modules/information/information.module#InformationModule'
   },
   {
     path: 'history/timeline',
