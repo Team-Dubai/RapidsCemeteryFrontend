@@ -11,8 +11,16 @@ const routes: Routes = [
     loadChildren: './modules/tour/tour.module#TourModule'
   },
   {
-    path: 'history',
-    loadChildren: './modules/history/history.module#HistoryModule'
+    path: 'history/timeline',
+    loadChildren: './modules/timeline/timeline.module#TimelineModule'
+  },
+  {
+    path: 'history/plot',
+    loadChildren: './modules/plot/plot.module#PlotModule'
+  },
+  {
+    path: 'history/burials',
+    loadChildren: './modules/burials/burials.module#BurialsModule'
   },
   {
     path: 'trails',
