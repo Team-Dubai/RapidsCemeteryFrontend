@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/home">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" width="30" height="30" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed" [attr.aria-expanded]="!isCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+      </li>
+      <li ngbDropdown class="nav-item dropdown" role="button" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownOne" ngbDropdownToggle>Cemetery Tour</a>
+        <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownOne">
+          <a class="dropdown-item" routerLink="/tour/walking">Walking Tour</a>
+          <a class="dropdown-item" routerLink="/tour/information">Informational Tour</a>
+        </div>
+      </li>
+      <li ngbDropdown class="nav-item dropdown" role="button" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownTwo" ngbDropdownToggle>History</a>
+        <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownTwo">
+          <a class="dropdown-item" routerLink="/history/plot">Loomis Cemetery Plot Map</a>
+          <a class="dropdown-item" routerLink="/history/timeline">Timeline</a>
+          <a class="dropdown-item" routerLink="/history/burials">Complete List of Burials</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/trails" routerLinkActive="active">Nearby Historical Trails</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/faq" routerLinkActive="active">FAQ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" routerLinkActive="active">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
