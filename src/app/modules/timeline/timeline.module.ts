@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { 
-    path: '', component: TimelineComponent, pathMatch: 'full'
+    path: '', component: TimelineComponent, pathMatch: 'full', data: {title: 'Cemetery Timeline'}
   }
 ];
 

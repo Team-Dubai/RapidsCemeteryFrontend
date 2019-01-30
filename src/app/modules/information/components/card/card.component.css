@@ -1,0 +1,11 @@
+.row {
+    margin-bottom: 2rem;
+}
+
+.card {
+    cursor: pointer;
+}
+
+#last-card-row {
+    margin-bottom: 0rem;
+}

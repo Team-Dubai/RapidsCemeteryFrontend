@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { 
-    path: '', component: TrailsComponent, pathMatch: 'full'
+    path: '', component: TrailsComponent, pathMatch: 'full', data: {title: 'Nearby Historical Trails'}
   }
 ];
 
