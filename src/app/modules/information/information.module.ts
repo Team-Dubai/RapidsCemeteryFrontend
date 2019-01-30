@@ -9,7 +9,7 @@ import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
   { 
-    path: '', component: InformationComponent, pathMatch: 'full', data: {title: 'Information Tour'}
+    path: '', component: InformationComponent, pathMatch: 'full', data: {title: 'Informational Tour'}
   }
 ];
 
