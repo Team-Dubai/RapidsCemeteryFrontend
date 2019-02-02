@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { 
-    path: '', component: ContactComponent, pathMatch: 'full'
+    path: '', component: ContactComponent, pathMatch: 'full', data: {title: 'Contact Us'}
   }
 ];
 

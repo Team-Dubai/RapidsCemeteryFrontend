@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { 
-    path: '', component: PlotComponent, pathMatch: 'full'
+    path: '', component: PlotComponent, pathMatch: 'full', data: {title: 'Loomis Cemetery Plot Map'}
   }
 ];
 
