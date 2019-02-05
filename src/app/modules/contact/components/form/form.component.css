@@ -1,0 +1,7 @@
+form {
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+input, textarea {
+    background-color: #f6f7f8;
+}
