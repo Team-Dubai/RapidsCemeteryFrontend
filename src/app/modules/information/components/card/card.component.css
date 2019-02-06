@@ -1,11 +1,12 @@
-.row {
+.card {
+    cursor: pointer;
     margin-bottom: 2rem;
 }
 
-.card {
-    cursor: pointer;
+img {
+    object-fit: cover;
 }
 
-#last-card-row {
-    margin-bottom: 0rem;
+.container {
+    margin-bottom: -2rem;
 }

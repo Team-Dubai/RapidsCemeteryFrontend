@@ -6,6 +6,7 @@ import { SharedModule } from '../../shared/shared.module'
 import { CardComponent } from './components/card/card.component';
 import { ItemComponent } from './components/item/item.component';
 import { SearchComponent } from './components/search/search.component';
+import { ItemService } from 'src/app/services/item.service';
 
 const routes: Routes = [
   { 
@@ -20,6 +21,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  entryComponents: [ItemComponent]
+  entryComponents: [ItemComponent],
+  providers: [ItemService]
 })
 export class InformationModule { }
