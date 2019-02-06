@@ -1,16 +1,10 @@
 <div class="modal-header">
-  <h4 class="modal-title">Card title</h4>
+  <h4 class="modal-title">{{item.name}}</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <img src="../../../../../assets/img/Unknown.png" class="img-fluid" alt="">
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam accumsan 
-    lacus sed ante convallis, ac scelerisque purus posuere. Etiam lobortis consectetur 
-    dolor vitae tempor. Quisque a lacus facilisis, iaculis nibh at, sagittis arcu. Donec 
-    aliquet finibus facilisis. Class aptent taciti sociosqu ad litora torquent per conubia 
-    nostra, per inceptos himenaeos. Donec sit amet turpis a nunc eleifend ultrices. Quisque 
-    dui sapien, eleifend vel congue accumsan, cursus sed ante. Suspendisse pharetra mauris nisl, 
-    eget lacinia ex semper id. Vestibulum ac blandit nisl, scelerisque fringilla urna.</p>
+  <img src="{{item.image}}" class="img-fluid" alt="">
+  <p>{{item.description}}</p>
 </div>

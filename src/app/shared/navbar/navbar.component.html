@@ -8,34 +8,34 @@
   <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+        <a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">Home</a>
       </li>
       <li ngbDropdown class="nav-item dropdown" role="button" routerLinkActive="active">
         <a class="nav-link dropdown-toggle" id="navbarDropdownOne" ngbDropdownToggle>Cemetery Tour</a>
         <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownOne">
-          <a class="dropdown-item" routerLink="/tour/walking">Walking Tour</a>
-          <a class="dropdown-item" routerLink="/tour/information">Informational Tour</a>
+          <a class="dropdown-item" routerLink="/tour/walking" (click)="isCollapsed=!isCollapsed">Walking Tour</a>
+          <a class="dropdown-item" routerLink="/tour/information" (click)="isCollapsed=!isCollapsed">Informational Tour</a>
         </div>
       </li>
       <li ngbDropdown class="nav-item dropdown" role="button" routerLinkActive="active">
         <a class="nav-link dropdown-toggle" id="navbarDropdownTwo" ngbDropdownToggle>History</a>
         <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownTwo">
-          <a class="dropdown-item" routerLink="/history/plot">Loomis Cemetery Plot Map</a>
-          <a class="dropdown-item" routerLink="/history/timeline">Timeline</a>
-          <a class="dropdown-item" routerLink="/history/burials">Complete List of Burials</a>
+          <a class="dropdown-item" routerLink="/history/plot" (click)="isCollapsed=!isCollapsed">Loomis Cemetery Plot Map</a>
+          <a class="dropdown-item" routerLink="/history/timeline" (click)="isCollapsed=!isCollapsed">Timeline</a>
+          <a class="dropdown-item" routerLink="/history/burials" (click)="isCollapsed=!isCollapsed">Complete List of Burials</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/trails" routerLinkActive="active">Nearby Historical Trails</a>
+        <a class="nav-link" routerLink="/trails" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">Nearby Historical Trails</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/faq" routerLinkActive="active">FAQ</a>
+        <a class="nav-link" routerLink="/faq" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">FAQ</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/about" routerLinkActive="active">About Us</a>
+        <a class="nav-link" routerLink="/about" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contact Us</a>
+        <a class="nav-link" routerLink="/contact" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">Contact Us</a>
       </li>
     </ul>
   </div>
