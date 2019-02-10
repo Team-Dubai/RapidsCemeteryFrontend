@@ -1,0 +1,39 @@
+.rect {
+    fill: none;
+    stroke: #FFF200;
+    stroke-miterlimit: 10;
+}
+
+.letter {
+    fill:#FFF200;
+    font-size: 24px;
+}
+
+#active-rect {
+    stroke: blue;
+}
+
+#active-letter {
+    fill: blue;
+}
+
+h4 {
+    padding-top: 2rem;
+}
+
+h1 {
+    padding-top: 2rem;
+    padding-left: 2rem;
+    text-decoration: underline;
+}
+
+img {
+    margin-top: 2rem;
+    object-fit: cover;
+}
+
+p {
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
