@@ -2,7 +2,7 @@
   <ngb-tabset type="pills">
     <ngb-tab title="Items">
       <ng-template ngbTabContent>
-        <add-item-form></add-item-form>
+        <add-item-form (update)="onAdd($event)"></add-item-form>
         <edit-item-form [items]="items" (update)="onUpdate($event)"></edit-item-form>
         <delete-item-form [items]="items" (delete)="onDelete($event)"></delete-item-form>
       </ng-template>

@@ -13,6 +13,8 @@ export class EditItemFormComponent implements OnInit {
   private name: string = '';
   private description: string = '';
   private image: string = '';
+  private filename: string = '';
+  private category: string = '';
   private item: Item;
   public displayEdit: boolean = false;
   @Input() items: Item[];
@@ -23,6 +25,11 @@ export class EditItemFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Method that will display the update form
+   * upon the user choosing, which item they
+   * want to edit.
+   */
   edit() {
     this.displayEdit = true;
     let item = this.getItems().find(item => item.id == this.id);
@@ -30,20 +37,32 @@ export class EditItemFormComponent implements OnInit {
   }
 
   /**
-   * Function that will send the data to
+   * Method that will send the data to
    * the parent component, Wrapper.
    */
   onSubmit(data: NgForm) {
-    //this.update.emit(data.value);
+    //Since you can't set a default value for an image,
+    //we need to check and see if the user chose one.
+    if(data.value.image === "") {
+      data.value.image = this.filename;
+    }
 
-    //this.displayEdit = true;
+    //Send the updated item to the parent
+    this.update.emit(data.value);
+
+    //Clear all the fields and do not display them
+    this.name = '';
+    this.description = '';
+    this.category = '';
+    this.displayEdit = false;
   }
 
   //MUTATORS
   setItem(item: Item) {
     this.name = item.name;
     this.description = item.description;
-    this.image = item.image;
+    this.category = item.category;
+    this.filename = item.image;
   }
 
   //ACCESSORS
