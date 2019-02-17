@@ -1,0 +1,30 @@
+<form #editItemForm="ngForm" (ngSubmit)="onSubmit(editItemForm)" class="bg-white p-5" enctype='multipart/form-data'>
+  <h3>Edit Item</h3>
+  <div class='form-group'>
+    <select class='form-control' [(ngModel)]="id" name="id">
+      <option *ngFor="let item of items" [value]="item.id">{{item.name}}</option>
+    </select>
+  </div>
+  <div class='form-group'>
+      <button type="button" (click)="edit()" class='btn btn-dark btn-block'>Edit</button>
+  </div>
+  <ng-template [ngIf]="displayEdit">
+    <div class='form-group'>
+      <input type='text' [(ngModel)]="name" name='name' class='form-control border-0 p-4' placeholder="Name">
+    </div>
+    <div class='form-group'>
+      <textarea [(ngModel)]="description" name='description' class='form-control border-0 p-4' placeholder="Description"></textarea>
+    </div>
+    <div class='form-group'>
+      <select class='form-control' [(ngModel)]="category">
+        <option [value]="category">Plant</option>
+      </select>
+    </div>
+    <div class='form-group'>
+      <input type='file' [(ngModel)]="image" name='image' class='form-control'>
+    </div>
+    <div class='form-group'>
+      <button type="submit" class='btn btn-dark btn-block'>Update</button>
+    </div>
+  </ng-template>
+</form>

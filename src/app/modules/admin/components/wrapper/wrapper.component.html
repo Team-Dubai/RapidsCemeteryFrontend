@@ -1,0 +1,11 @@
+<div class="container">
+  <ngb-tabset type="pills">
+    <ngb-tab title="Items">
+      <ng-template ngbTabContent>
+        <add-item-form></add-item-form>
+        <edit-item-form [items]="items" (update)="onUpdate($event)"></edit-item-form>
+        <delete-item-form [items]="items" (delete)="onDelete($event)"></delete-item-form>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>
