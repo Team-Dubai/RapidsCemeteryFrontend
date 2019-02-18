@@ -1,0 +1,4 @@
+::ng-deep .card .card-header > h5 > button {
+    color: #1d2124;
+    text-decoration: none;
+}
