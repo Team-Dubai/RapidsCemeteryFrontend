@@ -9,12 +9,12 @@ import { Item } from 'src/app/models/item';
 })
 export class EditItemFormComponent implements OnInit {
   //Instance variables
-  private id: number = 0;
-  private name: string = '';
-  private description: string = '';
-  private image: string = '';
-  private filename: string = '';
-  private category: string = '';
+  public id: number = 0;
+  public name: string = '';
+  public description: string = '';
+  public image: string = '';
+  public filename: string = '';
+  public category: string = '';
   private item: Item;
   public displayEdit: boolean = false;
   @Input() items: Item[];

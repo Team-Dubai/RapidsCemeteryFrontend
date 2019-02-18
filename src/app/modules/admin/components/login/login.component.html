@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
       <div class="col-lg-6 col-md-7 col-sm-10 mx-auto">
-        <form class="bg-white p-5">
+        <form class="bg-white p-5" ngNativeValidate>
           <div class="form-group">
-            <input type="text" class="form-control border-0 p-4" placeholder="Email">
+            <input type="text" class="form-control border-0 p-4" placeholder="Email" required>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control border-0 p-4" placeholder="Password">
+            <input type="password" class="form-control border-0 p-4" placeholder="Password" required>
           </div>
           <button type="submit" class="btn btn-dark btn-block btn-lg">Login</button>
         </form>

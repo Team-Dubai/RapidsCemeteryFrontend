@@ -8,10 +8,10 @@ import { NgForm } from '@angular/forms';
 })
 export class AddItemFormComponent implements OnInit {
   //Instance variables
-  private name: string = '';
-  private description: string = '';
-  private image: string = '';
-  private category: string = '';
+  public name: string = '';
+  public description: string = '';
+  public image: string = '';
+  public category: string = '';
   @Output() add = new EventEmitter<string>();
 
   constructor() { }
