@@ -49,11 +49,6 @@ export class EditItemFormComponent implements OnInit {
 
     //Send the updated item to the parent
     this.update.emit(data.value);
-
-    //Clear all the fields and do not display them
-    this.name = '';
-    this.description = '';
-    this.category = '';
     this.displayEdit = false;
   }
 

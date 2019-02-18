@@ -37,6 +37,8 @@ export class WrapperComponent implements OnInit {
     //Set and send the object to the API
     //Update the item in the local array, so it changes on screen without refreshing
     this.setSendItem(item);
+    this.itemService.addItem(this.getSendItem())
+      .subscribe(item => this.items.push(item));
   }
 
   /**

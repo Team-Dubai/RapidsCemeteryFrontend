@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Item } from 'src/app/models/item';
 
 @Component({
   selector: 'add-item-form',
@@ -12,10 +11,8 @@ export class AddItemFormComponent implements OnInit {
   private name: string = '';
   private description: string = '';
   private image: string = '';
-  private filename: string = '';
   private category: string = '';
-  private item: Item;
-  @Output() update = new EventEmitter<string>();
+  @Output() add = new EventEmitter<string>();
 
   constructor() { }
 
@@ -27,15 +24,13 @@ export class AddItemFormComponent implements OnInit {
    * the parent component, Wrapper.
    */
   onSubmit(data: NgForm) {
-    console.log(data.value);
-    //Since you can't set a default value for an image,
-    //we need to check and see if the user chose one.
-    /*if(data.value.image === "") {
-      data.value.image = this.filename;
-    }*/
+    //If the image is empty, then let's use a default one
+    if(data.value.image === "") {
+      data.value.image = 'Unknown.png';
+    }
 
     //Send the updated item to the parent
-    //this.update.emit(data.value);
+    this.add.emit(data.value);
   }
 
 }
