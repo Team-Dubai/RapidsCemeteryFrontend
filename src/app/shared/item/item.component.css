@@ -3,8 +3,10 @@ img {
     height: auto;
     display: block;
     margin: 0 auto;
+    margin-bottom: 2rem;
 }
 
 p {
-    padding: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }

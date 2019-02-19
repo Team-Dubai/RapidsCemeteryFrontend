@@ -19,4 +19,12 @@ export class ItemService {
   getItems(): Observable<Item[]> {
     return this.http.get<Item[]>(this.itemsUrl+'getAllItems');
   }
+
+  /**
+   * Method that will use the Angular http client
+   * to retrieve data from the API by category.
+   */
+  getItemsByCategory(category: object): Observable<Item[]> {
+    return this.http.post<Item[]>(this.itemsUrl+'getItemsByCategory', category);
+  }
 }

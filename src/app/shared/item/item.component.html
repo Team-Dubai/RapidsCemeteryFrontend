@@ -1,0 +1,30 @@
+<ng-container *ngIf="isRegularItem; else burials">
+  <div class="modal-header" *ngIf="isRegularItem; else burials">
+    <h4 class="modal-title">{{item.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img src="{{item.image}}" class="img-fluid" alt="">
+    <p>{{item.description}}</p>
+  </div>
+</ng-container>
+<ng-template #burials>
+  <div class="modal-header">
+    <h4 class="modal-title">{{item.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <img src="{{item.image}}" class="img-fluid" alt="">
+      <p><span class="font-weight-bold">Date of Birth: </span>{{item.description}}</p>
+      <p><span class="font-weight-bold">Place of Birth: </span>{{item.description}}</p>
+      <p><span class="font-weight-bold">Date of Death: </span>{{item.description}}</p>
+      <p><span class="font-weight-bold">Place of Death: </span>{{item.description}}</p>
+      <p><span class="font-weight-bold">Plot Designation: </span>{{item.description}}</p>
+      <p><span class="font-weight-bold">Veteran Information: </span>{{item.description}}</p>
+      <p><span class="font-weight-bold">Notes: </span>{{item.description}}</p>
+  </div>
+</ng-template>
