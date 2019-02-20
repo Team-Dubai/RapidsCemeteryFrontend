@@ -8,9 +8,14 @@ import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ItemService } from 'src/app/services/item.service';
-import { AddItemFormComponent } from './components/item-form/add-item-form.component';
+import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
 import { EditItemFormComponent } from './components/edit-item-form/edit-item-form.component';
 import { DeleteItemFormComponent } from './components/delete-item-form/delete-item-form.component';
+import { AddTagFormComponent } from './components/add-tag-form/add-tag-form.component';
+import { EditTagFormComponent } from './components/edit-tag-form/edit-tag-form.component';
+import { DeleteTagFormComponent } from './components/delete-tag-form/delete-tag-form.component';
+import { AddStopFormComponent } from './components/add-stop-form/add-stop-form.component';
+import { DeleteStopFormComponent } from './components/delete-stop-form/delete-stop-form.component';
 
 const routes: Routes = [
   { 
@@ -19,7 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AdminComponent, LoginComponent, WrapperComponent, AddItemFormComponent, EditItemFormComponent, DeleteItemFormComponent],
+  declarations: [AdminComponent, LoginComponent, WrapperComponent, AddItemFormComponent, EditItemFormComponent, DeleteItemFormComponent, AddTagFormComponent, EditTagFormComponent, DeleteTagFormComponent, AddStopFormComponent, DeleteStopFormComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

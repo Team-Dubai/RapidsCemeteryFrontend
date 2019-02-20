@@ -1,9 +1,9 @@
-/*::ng-deep .nav-fill .nav-link.active {
-    margin-top: -1px;
-    border-top: 2px solid #20a8d8;
-}*/
-
 ::ng-deep .nav-pills .nav-link.active, 
 ::ng-deep .nav-pills .show > .nav-link {
     background-color: #343a40;
+}
+
+::ng-deep .nav-pills .nav-link, 
+::ng-deep .nav-pills .show > .nav-link {
+    color: black;
 }

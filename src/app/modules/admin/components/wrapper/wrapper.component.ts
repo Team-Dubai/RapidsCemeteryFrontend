@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from 'src/app/services/item.service';
 import { Item } from 'src/app/models/item';
+import { Tag } from 'src/app/models/tag';
 
 @Component({
   selector: 'admin-wrapper',
@@ -33,7 +34,7 @@ export class WrapperComponent implements OnInit {
    * 
    * @param item 
    */
-  onAdd(item: Item) {
+  onItemAdd(item: Item) {
     //Set and send the object to the API
     //Update the item in the local array, so it changes on screen without refreshing
     this.setSendItem(item);
@@ -47,7 +48,7 @@ export class WrapperComponent implements OnInit {
    * 
    * @param item 
    */
-  onUpdate(item: Item) {
+  onItemUpdate(item: Item) {
     //Get the item that needs to be changed
     let changeItem = this.getItems().find(i => i.id == item.id);
 
@@ -61,9 +62,40 @@ export class WrapperComponent implements OnInit {
   /**
    * Function that will utilize the item service
    * to delete the specified item.
+   * 
    * @param id 
    */
-  onDelete(id: string) {
+  onItemDelete(id: string) {
+    console.log("Delete: " + id);
+  }
+
+  /**
+   * Method that will utilize the tag service
+   * to add a specific tag.
+   * 
+   * @param tag 
+   */
+  onTagAdd(tag: Tag) {
+    console.log(tag);
+  }
+
+  /**
+   * Method that will utilize the tag service
+   * to update a specific tag.
+   * 
+   * @param tag 
+   */
+  onTagUpdate(tag: Tag) {
+    console.log(tag);
+  }
+
+  /**
+   * Function that will utilize the tag service
+   * to delete the specified tag.
+   * 
+   * @param id 
+   */
+  onTagDelete(id: string) {
     console.log("Delete: " + id);
   }
 
