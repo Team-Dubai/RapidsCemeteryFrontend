@@ -1,5 +1,12 @@
 .jumbotron {
-    background-image: url('../../../assets/img/banner.jpg');
+    background: 
+    /* top, transparent red, faked with gradient */ 
+    linear-gradient(
+      rgba(0, 0, 0, 0.4), 
+      rgba(0, 0, 0, 0.4)
+    ),
+    /* bottom, image */
+    url('../../../assets/img/banner.jpeg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

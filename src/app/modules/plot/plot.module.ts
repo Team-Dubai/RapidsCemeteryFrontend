@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlotComponent } from './view/plot/plot.component';
 import { Routes, RouterModule } from '@angular/router';
+import { LoomisComponent } from './components/loomis/loomis.component';
+import { SharedModule } from '../../shared/shared.module';
 
 const routes: Routes = [
   { 
@@ -10,10 +12,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PlotComponent],
+  declarations: [PlotComponent, LoomisComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class PlotModule { }
