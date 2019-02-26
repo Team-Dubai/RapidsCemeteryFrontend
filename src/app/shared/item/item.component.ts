@@ -11,7 +11,7 @@ import { Item } from 'src/app/models/item';
 export class ItemComponent implements OnInit {
   //Instance variables
   @Input() item: Item;
-  @Input() isRegularItem: boolean;
+  @Input() whichItem: string;
 
   constructor(public activeModal: NgbActiveModal) { }
 
