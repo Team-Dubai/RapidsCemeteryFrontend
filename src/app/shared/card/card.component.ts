@@ -13,7 +13,8 @@ export class CardComponent implements OnInit {
   //Instance variables
   private items: Item[];
   private burials: Item[];
-  @Input() isRegularItem: boolean;
+  private trails: Item[];
+  @Input() whichItem: string;
 
   constructor(private modal: NgbModal, private itemService: ItemService) { }
 
@@ -21,10 +22,12 @@ export class CardComponent implements OnInit {
     //Check to see if we need to get a regular item
     //for the info table or a specific item for the
     //complete list of burials
-    if(this.isRegularItem) {
+    if(this.whichItem === "info") {
       this.getAllItems();
-    } else {
+    } else if(this.whichItem === "burial") {
       this.getAllBurials();
+    } else if(this.whichItem === "trail") {
+      this.getAllTrails();
     }
   }
 
@@ -37,12 +40,15 @@ export class CardComponent implements OnInit {
     
     //Check to see if we are clicking on a regular
     //item or a burial specific item
-    if(this.isRegularItem) {
+    if(this.whichItem === "info") {
       modelRef.componentInstance.item = this.getItems().find(item => item.id === id);
-      modelRef.componentInstance.isRegularItem = this.isRegularItem;
-    } else {
+      modelRef.componentInstance.whichItem = this.whichItem;
+    } else if(this.whichItem === "burial") {
       modelRef.componentInstance.item = this.getBurials().find(item => item.id === id);
-      modelRef.componentInstance.isRegularItem = this.isRegularItem;
+      modelRef.componentInstance.whichItem = this.whichItem;
+    } else if(this.whichItem === "trail") {
+      modelRef.componentInstance.item = this.getTrails().find(item => item.id === id);
+      modelRef.componentInstance.whichItem = this.whichItem;
     }
   }
 
@@ -69,6 +75,20 @@ export class CardComponent implements OnInit {
       .subscribe(burial => this.burials = burial);
   }
 
+  /**
+   * Method that will utilize the item service
+   * to retrieve all the items that are trails.
+   */
+  getAllTrails() {
+    //Create the object to send to the API
+    let categoryObject = {
+      category: 'TRAIL'
+    };
+
+    this.itemService.getItemsByCategory(categoryObject)
+      .subscribe(trail => this.trails = trail);
+  }
+
   //ACCESSORS
   getItems() {
     return this.items;
@@ -76,5 +96,9 @@ export class CardComponent implements OnInit {
 
   getBurials() {
     return this.burials;
+  }
+
+  getTrails() {
+    return this.trails;
   }
 }
