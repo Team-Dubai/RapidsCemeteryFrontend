@@ -1,3 +1,5 @@
 <banner></banner>
-<!--<login></login>-->
-<admin-wrapper></admin-wrapper>
+<login *ngIf="!getIsLoggedIn(); else admin" (authorize)="checkUser($event)"></login>
+<ng-template #admin>
+    <admin-wrapper></admin-wrapper>
+</ng-template>

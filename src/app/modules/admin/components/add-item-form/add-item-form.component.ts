@@ -12,11 +12,31 @@ export class AddItemFormComponent implements OnInit {
   public description: string = '';
   public image: string = '';
   public category: string = '';
+  public dateOfBirth: string = '';
+  public placeOfBirth: string = '';
+  public dateOfDeath: string = '';
+  public placeOfDeath: string = '';
+  public veteranInformation: string = '';
+  public notes: string = '';
+  public media: string = '';
+  public plot: string = '';
   @Output() add = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  /**
+   * Method that will detect the change in the select
+   * option that way we can update the category of the
+   * item and, as a result, dynamically edit the form
+   * for the admin to fill out.
+   * 
+   * @param newValue 
+   */
+  onChange(newValue: string) {
+    this.category = newValue;
   }
 
   /**
@@ -26,7 +46,7 @@ export class AddItemFormComponent implements OnInit {
   onSubmit(data: NgForm) {
     //If the image is empty, then let's use a default one
     if(data.value.image === "") {
-      data.value.image = 'Unknown.png';
+      data.value.image = '../../../../assets/img/Unknown.png';
     }
 
     //Send the updated item to the parent

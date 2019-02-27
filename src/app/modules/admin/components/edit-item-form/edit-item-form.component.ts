@@ -15,8 +15,16 @@ export class EditItemFormComponent implements OnInit {
   public image: string = '';
   public filename: string = '';
   public category: string = '';
-  private item: Item;
+  public dateOfBirth: string = '';
+  public placeOfBirth: string = '';
+  public dateOfDeath: string = '';
+  public placeOfDeath: string = '';
+  public veteranInformation: string = '';
+  public notes: string = '';
+  public media: string = '';
+  public plot: string = '';
   public displayEdit: boolean = false;
+  private item: Item;
   @Input() items: Item[];
   @Output() update = new EventEmitter<string>();
 
@@ -34,6 +42,18 @@ export class EditItemFormComponent implements OnInit {
     this.displayEdit = true;
     let item = this.getItems().find(item => item.id == this.id);
     this.setItem(item);
+  }
+
+  /**
+   * Method that will detect the change in the select
+   * option that way we can update the category of the
+   * item and, as a result, dynamically edit the form
+   * for the admin to fill out.
+   * 
+   * @param newValue 
+   */
+  onChange(newValue: string) {
+    this.category = newValue;
   }
 
   /**
