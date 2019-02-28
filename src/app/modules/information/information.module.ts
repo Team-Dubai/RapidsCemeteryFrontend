@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { InformationComponent } from './view/information/information.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module'
-import { CardComponent } from './components/card/card.component';
-import { ItemComponent } from './components/item/item.component';
+import { ItemComponent } from '../../shared/item/item.component';
 import { SearchComponent } from './components/search/search.component';
 import { ItemService } from 'src/app/services/item.service';
 
@@ -15,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [InformationComponent, CardComponent, ItemComponent, SearchComponent],
+  declarations: [InformationComponent, SearchComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

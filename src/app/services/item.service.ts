@@ -37,4 +37,12 @@ export class ItemService {
   updateItem(item: object): Observable<Item> {
     return this.http.post<Item>(this.itemsUrl+'saveItem', item);
   }
+  
+  /**
+   * Method that will use the Angular http client
+   * to retrieve data from the API by category.
+   */
+  getItemsByCategory(category: object): Observable<Item[]> {
+    return this.http.post<Item[]>(this.itemsUrl+'getItemsByCategory', category);
+  }
 }

@@ -1,0 +1,16 @@
+img {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+p {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+a {
+    color: black;
+}

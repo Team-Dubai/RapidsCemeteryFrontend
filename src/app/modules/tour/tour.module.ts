@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TourComponent } from './view/tour/tour.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MapComponent } from './components/map/map.component';
+import { SharedModule } from '../../shared/shared.module';
+import { WizardComponent } from './components/wizard/wizard.component';
+import { WizardStepComponent } from './components/wizard-step/wizard-step.component';
 
 const routes: Routes = [
   { 
@@ -10,10 +14,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TourComponent],
+  declarations: [TourComponent, MapComponent, WizardComponent, WizardStepComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class TourModule { }

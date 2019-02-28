@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from 'src/app/models/item';
 
+
 @Component({
   selector: 'item',
   templateUrl: './item.component.html',
@@ -10,6 +11,7 @@ import { Item } from 'src/app/models/item';
 export class ItemComponent implements OnInit {
   //Instance variables
   @Input() item: Item;
+  @Input() whichItem: string;
 
   constructor(public activeModal: NgbActiveModal) { }
 
