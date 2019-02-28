@@ -1,20 +1,18 @@
-<div class="container">
-  <ngb-tabset type="pills">
-    <ngb-tab title="Items">
-      <ng-template ngbTabContent>
-        <add-item-form (add)="onItemAdd($event)"></add-item-form>
-        <edit-item-form [items]="items" (update)="onItemUpdate($event)"></edit-item-form>
-        <delete-item-form [items]="items" (delete)="onItemDelete($event)"></delete-item-form>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab title="Tags">
-      <ng-template ngbTabContent>
-        <add-tag-form (add)="onTagAdd($event)"></add-tag-form>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab title="Tour Stops">
-      <ng-template ngbTabContent>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
-</div>
+<ngb-tabset type="pills">
+  <ngb-tab title="Items">
+    <ng-template ngbTabContent>
+      <add-item-form (add)="onItemAdd($event)"></add-item-form>
+      <edit-item-form [items]="items" (update)="onItemUpdate($event)"></edit-item-form>
+      <delete-item-form [items]="items" (delete)="onItemDelete($event)"></delete-item-form>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Tags">
+    <ng-template ngbTabContent>
+      <add-tag-form (add)="onTagAdd($event)"></add-tag-form>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Tour Stops">
+    <ng-template ngbTabContent>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

@@ -1,5 +1,8 @@
 <banner></banner>
 <login *ngIf="!getIsLoggedIn(); else admin" (authorize)="checkUser($event)"></login>
 <ng-template #admin>
-    <admin-wrapper></admin-wrapper>
+    <div class="container">
+        <button type="button" class="btn btn-dark float-right" (click)="destroySession()">Logout</button>
+        <admin-wrapper></admin-wrapper>
+    </div>
 </ng-template>
