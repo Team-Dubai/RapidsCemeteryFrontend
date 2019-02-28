@@ -21,6 +21,24 @@ export class ItemService {
   }
 
   /**
+   * Method that will use the Angular http client to add an item
+   * using the API.
+   * @param item 
+   */
+  addItem(item: object): Observable<Item> {
+    return this.http.post<Item>(this.itemsUrl+'saveItem', item);
+  }
+
+  /**
+   * Method that will use the Angular http client to update an item
+   * using the API.
+   * @param item 
+   */
+  updateItem(item: object): Observable<Item> {
+    return this.http.post<Item>(this.itemsUrl+'saveItem', item);
+  }
+  
+  /**
    * Method that will use the Angular http client
    * to retrieve data from the API by category.
    */

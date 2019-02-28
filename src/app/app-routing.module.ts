@@ -43,6 +43,10 @@ const routes: Routes = [
     loadChildren: './modules/contact/contact.module#ContactModule'
   },
   {
+    path: 'admin',
+    loadChildren: './modules/admin/admin.module#AdminModule'
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
