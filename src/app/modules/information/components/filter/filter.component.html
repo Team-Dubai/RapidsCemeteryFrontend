@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="text-right">
+    <button type="button" class="btn btn-dark" (click)="isCollapsed=!isCollapsed" [attr.aria-expanded]="!isCollapsed">Toggle</button>
+  </div>
+  <div id="collapseExample" [ngbCollapse]="isCollapsed">
+    <div class="card">
+      <div class="card-body">
+        <span *ngFor="let tag of tags" class="badge badge-pill badge-dark unselectedTag" (click)="setFilter(tag.name, $event)">{{tag.name}}</span>
+      </div>
+    </div>
+  </div>
+</div>

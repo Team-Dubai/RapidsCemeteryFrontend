@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { Item } from 'src/app/models/item';
+import { Tag } from 'src/app/models/tag';
 
 @Component({
   selector: 'edit-item-form',
@@ -25,6 +26,8 @@ export class EditItemFormComponent implements OnInit {
   public plot: string = '';
   public displayEdit: boolean = false;
   private item: Item;
+  public tags: Tag[];
+  @Input() tagsInput: Tag[];
   @Input() items: Item[];
   @Output() update = new EventEmitter<string>();
 
@@ -66,9 +69,9 @@ export class EditItemFormComponent implements OnInit {
     if(data.value.image === "") {
       data.value.image = this.filename;
     }
-
+console.log(data.value);
     //Send the updated item to the parent
-    this.update.emit(data.value);
+    //this.update.emit(data.value);
     this.displayEdit = false;
   }
 
@@ -78,6 +81,7 @@ export class EditItemFormComponent implements OnInit {
     this.description = item.description;
     this.category = item.category;
     this.filename = item.image;
+    this.tags = item.tags;
   }
 
   //ACCESSORS

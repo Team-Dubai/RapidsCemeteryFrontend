@@ -1,0 +1,14 @@
+.container {
+    margin-bottom: 2rem;
+}
+
+span {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.unselectedTag {
+    background-color: #ffffff;
+    color: #343a40;
+    border: 1px solid #343a40;
+}

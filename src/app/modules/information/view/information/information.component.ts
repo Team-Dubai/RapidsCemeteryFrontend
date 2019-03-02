@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tag } from 'src/app/models/tag';
 
 @Component({
   selector: 'app-information',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['../../../../../assets/css/information.component.css']
 })
 export class InformationComponent implements OnInit {
+  private filter: string[];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onFilterChange(filterListFromChild: string[]) {
+    this.filter = filterListFromChild;
   }
 
 }

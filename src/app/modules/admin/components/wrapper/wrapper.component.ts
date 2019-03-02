@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from 'src/app/services/item.service';
+import { TagService } from 'src/app/services/tag.service';
 import { Item } from 'src/app/models/item';
 import { Tag } from 'src/app/models/tag';
 
@@ -11,12 +12,15 @@ import { Tag } from 'src/app/models/tag';
 export class WrapperComponent implements OnInit {
   //Instance variables
   private items: Item[];
+  private tags: Tag[];
   private itemObject = {};
+  private tagObject = {};
 
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService, private tagService: TagService) { }
 
   ngOnInit() {
     this.getAllItems();
+    this.getAllTags();
   }
 
   /**
@@ -26,6 +30,15 @@ export class WrapperComponent implements OnInit {
   getAllItems() {
     this.itemService.getItems()
       .subscribe(item => this.items = item);
+  }
+
+  /**
+   * Method that will utilize the item service
+   * to retrieve all the tags.
+   */
+  getAllTags() {
+    this.tagService.getTags()
+      .subscribe(tag => this.tags = tag);
   }
 
   /**
@@ -66,7 +79,12 @@ export class WrapperComponent implements OnInit {
    * @param id 
    */
   onItemDelete(id: string) {
-    console.log("Delete: " + id);
+    let itemIdObject = {
+      id: parseInt(id)
+    };
+
+    this.itemService.deleteItem(itemIdObject).subscribe();
+    this.items = this.items.filter(item => item.id !== parseInt(id));
   }
 
   /**
@@ -76,7 +94,11 @@ export class WrapperComponent implements OnInit {
    * @param tag 
    */
   onTagAdd(tag: Tag) {
-    console.log(tag);
+    //Set and send the object to the API
+    //Update the tag in the local array, so it changes on screen without refreshing
+    this.setSendTag(tag);
+    this.tagService.addItem(this.getSendTag())
+      .subscribe(tag => this.tags.push(tag));
   }
 
   /**
@@ -86,7 +108,14 @@ export class WrapperComponent implements OnInit {
    * @param tag 
    */
   onTagUpdate(tag: Tag) {
-    console.log(tag);
+    //Get the tag that needs to be changed
+    let changeTag = this.getItems().find(i => i.id == tag.id);
+
+    //Set and send the object to the API
+    //Update the item in the local array, so it changes on screen without refreshing
+    this.setSendTag(tag);
+    this.tagService.updateTag(this.getSendTag())
+      .subscribe(tag => this.setTagInTags(this.getTags().findIndex(i => i.id == changeTag.id), tag));
   }
 
   /**
@@ -96,7 +125,12 @@ export class WrapperComponent implements OnInit {
    * @param id 
    */
   onTagDelete(id: string) {
-    console.log("Delete: " + id);
+    let tagIdObject = {
+      id: parseInt(id)
+    };
+
+    this.tagService.deleteTag(tagIdObject).subscribe();
+    this.tags = this.tags.filter(tag => tag.id !== parseInt(id));
   }
 
   //ACCESSORS
@@ -104,8 +138,16 @@ export class WrapperComponent implements OnInit {
     return this.items;
   }
 
+  getTags() {
+    return this.tags;
+  }
+
   getSendItem() {
     return this.itemObject;
+  }
+
+  getSendTag() {
+    return this.tagObject;
   }
 
   //MUTATORS
@@ -113,8 +155,16 @@ export class WrapperComponent implements OnInit {
     this.items[index] = item;
   }
 
+  setTagInTags(index: number, tag: Tag) {
+    this.tags[index] = tag;
+  }
+
   setSendItem(item: Item) {
     this.itemObject['item'] = item;
+  }
+
+  setSendTag(tag: Tag) {
+    this.tagObject['tag'] = tag;
   }
   
 }

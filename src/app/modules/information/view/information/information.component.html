@@ -1,2 +1,3 @@
 <banner></banner>
-<card [whichItem]="'info'"></card>
+<filter (filterItems)="onFilterChange($event)"></filter>
+<card [whichItem]="'info'" [filters]="filter"></card>
