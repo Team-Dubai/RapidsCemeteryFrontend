@@ -23,7 +23,6 @@ export class InformationComponent implements OnInit {
    */
   onFilterChange(filterListFromChild: string[]) {
     this.filter = filterListFromChild;
-    console.log(this.filter);
     this.child.filterData();
   }
 

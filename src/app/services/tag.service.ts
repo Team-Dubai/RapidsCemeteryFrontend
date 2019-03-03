@@ -21,7 +21,7 @@ export class TagService {
    * to retrieve data from the API.
    */
   getTags(): Observable<Tag[]> {
-    return this.http.get<Tag[]>(this.tagsUrl+'getAllTags', httpOptions);
+    return this.http.get<Tag[]>(this.tagsUrl+'getAllTags');
   }
 
   /**
@@ -30,7 +30,7 @@ export class TagService {
    * @param tag 
    */
   addItem(tag: object): Observable<Tag> {
-    return this.http.post<Tag>(this.tagsUrl+'saveTag', tag, httpOptions);
+    return this.http.post<Tag>(this.tagsUrl+'saveTag', tag);
   }
 
   /**
@@ -39,7 +39,7 @@ export class TagService {
    * @param tag 
    */
   updateTag(tag: object): Observable<Tag> {
-    return this.http.post<Tag>(this.tagsUrl+'saveTag', tag, httpOptions);
+    return this.http.post<Tag>(this.tagsUrl+'saveTag', tag);
   }
 
   /**
@@ -48,6 +48,6 @@ export class TagService {
    * @param tagIdObject 
    */
   deleteTag(tagIdObject: object): Observable<Tag> {
-    return this.http.post<Tag>(this.tagsUrl+'removeTagById', tagIdObject, httpOptions);
+    return this.http.post<Tag>(this.tagsUrl+'removeTagById', tagIdObject);
   }
 }

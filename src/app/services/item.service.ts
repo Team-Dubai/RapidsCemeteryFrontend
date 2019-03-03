@@ -48,7 +48,7 @@ export class ItemService {
    * @param itemIdObject 
    */
   deleteItem(itemIdObject: object): Observable<Item> {
-    return this.http.post<Item>(this.itemsUrl+'removeItemById', itemIdObject, httpOptions);
+    return this.http.post<Item>(this.itemsUrl+'removeItemById', itemIdObject);
   }
   
   /**

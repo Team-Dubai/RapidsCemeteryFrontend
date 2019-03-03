@@ -82,6 +82,14 @@ console.log(data.value);
     this.category = item.category;
     this.filename = item.image;
     this.tags = item.tags;
+    this.dateOfBirth = item.dateOfBirth;
+    this.dateOfDeath = item.dateOfDeath;
+    this.placeOfBirth = item.placeOfBirth;
+    this.placeOfDeath = item.placeOfDeath;
+    this.veteranInformation = item.veteranInformation;
+    this.notes = item.notes;
+    this.plot = item.plot;
+    this.media = item.media;
   }
 
   //ACCESSORS
