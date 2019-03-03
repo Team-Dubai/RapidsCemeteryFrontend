@@ -3,6 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Item } from '../models/item';
 import { Observable } from 'rxjs';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'JWT': localStorage.getItem('token') })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +40,15 @@ export class ItemService {
    */
   updateItem(item: object): Observable<Item> {
     return this.http.post<Item>(this.itemsUrl+'saveItem', item);
+  }
+
+  /**
+   * Method that will use the Angular http client to delete an item
+   * using the API.
+   * @param itemIdObject 
+   */
+  deleteItem(itemIdObject: object): Observable<Item> {
+    return this.http.post<Item>(this.itemsUrl+'removeItemById', itemIdObject);
   }
   
   /**

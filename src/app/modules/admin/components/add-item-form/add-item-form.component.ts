@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Tag } from 'src/app/models/tag';
 
 @Component({
   selector: 'add-item-form',
@@ -20,6 +21,8 @@ export class AddItemFormComponent implements OnInit {
   public notes: string = '';
   public media: string = '';
   public plot: string = '';
+  public tags: Tag[];
+  @Input() tagsInput: Tag[];
   @Output() add = new EventEmitter<string>();
 
   constructor() { }

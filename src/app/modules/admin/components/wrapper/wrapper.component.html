@@ -1,14 +1,16 @@
 <ngb-tabset type="pills">
   <ngb-tab title="Items">
     <ng-template ngbTabContent>
-      <add-item-form (add)="onItemAdd($event)"></add-item-form>
-      <edit-item-form [items]="items" (update)="onItemUpdate($event)"></edit-item-form>
+      <add-item-form [tagsInput]="tags" (add)="onItemAdd($event)"></add-item-form>
+      <edit-item-form [tagsInput]="tags" [items]="items" (update)="onItemUpdate($event)"></edit-item-form>
       <delete-item-form [items]="items" (delete)="onItemDelete($event)"></delete-item-form>
     </ng-template>
   </ngb-tab>
   <ngb-tab title="Tags">
     <ng-template ngbTabContent>
       <add-tag-form (add)="onTagAdd($event)"></add-tag-form>
+      <edit-tag-form [tags]="tags" (update)="onTagUpdate($event)"></edit-tag-form>
+      <delete-tag-form [tags]="tags" (delete)="onTagDelete($event)"></delete-tag-form>
     </ng-template>
   </ngb-tab>
   <ngb-tab title="Tour Stops">

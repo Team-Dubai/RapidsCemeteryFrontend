@@ -11,9 +11,11 @@ import { Item } from 'src/app/models/item';
 })
 export class CardComponent implements OnInit {
   //Instance variables
+  private fullItemsArr: Item[] = [];
   private items: Item[];
   private burials: Item[];
   private trails: Item[];
+  @Input() filters: string[];
   @Input() whichItem: string;
 
   constructor(private modal: NgbModal, private itemService: ItemService) { }
@@ -41,8 +43,17 @@ export class CardComponent implements OnInit {
     //Check to see if we are clicking on a regular
     //item or a burial specific item
     if(this.whichItem === "info") {
-      modelRef.componentInstance.item = this.getItems().find(item => item.id === id);
-      modelRef.componentInstance.whichItem = this.whichItem;
+      let item = this.getItems().find(item => item.id === id);
+      modelRef.componentInstance.item = item;
+
+      //An info object can be any of the categories
+      if(item.category === "GRAVE") {
+        modelRef.componentInstance.whichItem = "burial";
+      } else if(item.category === "TRAIL") {
+        modelRef.componentInstance.whichItem = "trail";
+      } else {
+        modelRef.componentInstance.whichItem = this.whichItem;
+      }
     } else if(this.whichItem === "burial") {
       modelRef.componentInstance.item = this.getBurials().find(item => item.id === id);
       modelRef.componentInstance.whichItem = this.whichItem;
@@ -87,6 +98,23 @@ export class CardComponent implements OnInit {
 
     this.itemService.getItemsByCategory(categoryObject)
       .subscribe(trail => this.trails = trail);
+  }
+
+  /**
+   * Method that will handle the filtering of the
+   * items.
+   */
+  filterData() {
+    if(this.fullItemsArr.length === 0) {
+      this.fullItemsArr = this.getItems();
+    } else {
+      this.items = this.fullItemsArr;
+    }
+
+    if(this.filters.length !== 0) {
+      var result = this.items.filter(item => item.tags.some(tag => this.filters.indexOf(tag.name) !== -1));
+      this.items = result;
+    }    
   }
 
   //ACCESSORS

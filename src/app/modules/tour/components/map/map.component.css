@@ -11,10 +11,12 @@
 
 #active-rect {
     stroke: blue;
+    stroke-width: 2px;
 }
 
 #active-letter {
     fill: blue;
+    stroke-width: 2px;
 }
 
 h4 {

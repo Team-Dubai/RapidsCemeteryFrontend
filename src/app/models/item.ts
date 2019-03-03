@@ -1,3 +1,5 @@
+import { Tag } from './tag';
+
 export class Item {
     category: string;
     id: number;
@@ -12,5 +14,5 @@ export class Item {
     placeOfDeath: string;
     plot: string;
     veteranInformation: string;
-    tags: string[];
+    tags: Tag[];
 }

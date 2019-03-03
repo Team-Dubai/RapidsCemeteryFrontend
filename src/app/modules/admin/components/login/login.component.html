@@ -3,7 +3,7 @@
     <div class="col-lg-6 col-md-7 col-sm-10 mx-auto">
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm); loginForm.reset()" ngNativeValidate class="bg-white p-5" enctype='multipart/form-data'>
         <div class='form-group'>
-          <input type='text' [(ngModel)]="username" name='username' class='form-control border-0 p-4' placeholder="Email" required>
+          <input type='text' [(ngModel)]="username" name='username' class='form-control border-0 p-4' placeholder="Username" required>
         </div>
         <div class="form-group">
           <input type="password" [(ngModel)]="password" name='password' class="form-control border-0 p-4" placeholder="Password" required>
