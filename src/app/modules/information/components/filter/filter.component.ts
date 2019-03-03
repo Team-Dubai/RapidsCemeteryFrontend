@@ -10,8 +10,8 @@ import { TagService } from 'src/app/services/tag.service';
 export class FilterComponent implements OnInit {
   //Instance variables
   public isCollapsed = true;
-  private tags: Tag[];
-  private filter: string[] = [];
+  public tags: Tag[];
+  private filters: string[] = [];
   @Output() filterItems = new EventEmitter<string[]>();
 
   constructor(private tagService: TagService) { }
@@ -29,20 +29,28 @@ export class FilterComponent implements OnInit {
       .subscribe(tag => this.tags = tag);
   }
 
-  setFilter(name: string, ele) {
-    if(!this.filter.includes(name)) {
-      this.filter.push(name);
+  /**
+   * Method that will add/remove filters from the list.
+   * @param name 
+   * @param ele 
+   */
+  setFilter(name: string, ele: any) {
+    //Push the items on if they are not in the list
+    if(!this.filters.includes(name)) {
+      this.filters.push(name);
     } else {
-      for(var i = 0; i < this.filter.length; i++){ 
-        if(this.filter[i] === name) {
-          this.filter.splice(i, 1); 
+      for(var i = 0; i < this.filters.length; i++){ 
+        if(this.filters[i] === name) {
+          this.filters.splice(i, 1); 
           break;
         }
       }
     }
     
+    //Toggle the styles of the element
     ele.target.classList.toggle('unselectedTag');
-    this.filterItems.emit(this.filter);
+    //Send the filters to the backend
+    this.filterItems.emit(this.filters);
   }
 
 }

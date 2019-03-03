@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Tag } from 'src/app/models/tag';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CardComponent } from 'src/app/shared/card/card.component';
 
 @Component({
   selector: 'app-information',
@@ -7,15 +7,24 @@ import { Tag } from 'src/app/models/tag';
   styleUrls: ['../../../../../assets/css/information.component.css']
 })
 export class InformationComponent implements OnInit {
-  private filter: string[];
+  //Instance variables
+  public filter: string[] = [];
+  @ViewChild(CardComponent) child: CardComponent;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  /**
+   * Method that will set the filter array, so the
+   * child component could receive it.
+   * @param filterListFromChild 
+   */
   onFilterChange(filterListFromChild: string[]) {
     this.filter = filterListFromChild;
+    console.log(this.filter);
+    this.child.filterData();
   }
 
 }

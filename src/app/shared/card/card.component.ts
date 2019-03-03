@@ -3,7 +3,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ItemComponent } from '../item/item.component';
 import { ItemService } from 'src/app/services/item.service';
 import { Item } from 'src/app/models/item';
-import { Tag } from 'src/app/models/tag';
 
 @Component({
   selector: 'card',
@@ -12,6 +11,7 @@ import { Tag } from 'src/app/models/tag';
 })
 export class CardComponent implements OnInit {
   //Instance variables
+  private fullItemsArr: Item[] = [];
   private items: Item[];
   private burials: Item[];
   private trails: Item[];
@@ -98,6 +98,23 @@ export class CardComponent implements OnInit {
 
     this.itemService.getItemsByCategory(categoryObject)
       .subscribe(trail => this.trails = trail);
+  }
+
+  /**
+   * Method that will handle the filtering of the
+   * items.
+   */
+  filterData() {
+    if(this.fullItemsArr.length === 0) {
+      this.fullItemsArr = this.getItems();
+    } else {
+      this.items = this.fullItemsArr;
+    }
+
+    if(this.filters.length !== 0) {
+      var result = this.items.filter(item => item.tags.some(tag => this.filters.indexOf(tag.name) !== -1));
+      this.items = result;
+    }    
   }
 
   //ACCESSORS
