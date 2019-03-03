@@ -3,6 +3,8 @@ import { ItemService } from 'src/app/services/item.service';
 import { TagService } from 'src/app/services/tag.service';
 import { Item } from 'src/app/models/item';
 import { Tag } from 'src/app/models/tag';
+import { Stop } from 'src/app/models/stop';
+import { StopService } from 'src/app/services/stop.service';
 
 @Component({
   selector: 'admin-wrapper',
@@ -16,7 +18,7 @@ export class WrapperComponent implements OnInit {
   private itemObject = {};
   private tagObject = {};
 
-  constructor(private itemService: ItemService, private tagService: TagService) { }
+  constructor(private itemService: ItemService, private tagService: TagService, private stopService: StopService) { }
 
   ngOnInit() {
     this.getAllItems();
@@ -119,7 +121,7 @@ export class WrapperComponent implements OnInit {
   }
 
   /**
-   * Function that will utilize the tag service
+   * Method that will utilize the tag service
    * to delete the specified tag.
    * 
    * @param id 
@@ -131,6 +133,24 @@ export class WrapperComponent implements OnInit {
 
     this.tagService.deleteTag(tagIdObject).subscribe();
     this.tags = this.tags.filter(tag => tag.id !== parseInt(id));
+  }
+
+  /**
+   * Method that will utilize the stop service
+   * to update the specified stop.
+   * @param stop 
+   */
+  onStopAdd(stop: Stop) {
+    var stopObj = {
+      id: stop.id,
+      name: stop.name,
+      stop: {
+        items: stop.items
+      }
+    };
+
+    //console.log(stopObj);
+    this.stopService.updateStop(stopObj).subscribe()
   }
 
   //ACCESSORS

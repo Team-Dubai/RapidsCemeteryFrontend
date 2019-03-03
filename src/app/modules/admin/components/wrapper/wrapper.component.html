@@ -15,6 +15,7 @@
   </ngb-tab>
   <ngb-tab title="Tour Stops">
     <ng-template ngbTabContent>
+      <add-stop-form (add)="onStopAdd($event)"></add-stop-form>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>

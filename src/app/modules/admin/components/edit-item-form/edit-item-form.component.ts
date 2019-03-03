@@ -69,7 +69,7 @@ export class EditItemFormComponent implements OnInit {
     if(data.value.image === "") {
       data.value.image = this.filename;
     }
-console.log(data.value);
+
     //Send the updated item to the parent
     //this.update.emit(data.value);
     this.displayEdit = false;
