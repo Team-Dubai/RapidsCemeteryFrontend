@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Tag } from 'src/app/models/tag';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'add-item-form',
@@ -10,6 +11,7 @@ import { Tag } from 'src/app/models/tag';
 export class AddItemFormComponent implements OnInit {
   //Instance variables
   public name: string = '';
+  public url: string = `https://api.cloudinary.com/v1_1/deduiu1pn/upload`;
   public description: string = '';
   public image: string = '';
   public category: string = '';
@@ -25,7 +27,7 @@ export class AddItemFormComponent implements OnInit {
   @Input() tagsInput: Tag[];
   @Output() add = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -43,17 +45,47 @@ export class AddItemFormComponent implements OnInit {
   }
 
   /**
+   * Method that will setup the file to be sent 
+   * to cloudinary.
+   * @param file 
+   */
+  uploadFile(file) {
+    var fd = new FormData();
+
+    fd.append('upload_preset', "ls2g5en7");
+    fd.append('tags', 'browser_upload');
+    fd.append('file', file);
+
+    return fd;
+  }
+
+  /**
+   * Method that will get the file from the input.
+   * @param event 
+   */
+  handleFiles(event) {
+    this.image = event.target.files[0];
+  }
+
+  /**
    * Method that will send the data to
    * the parent component, Wrapper.
    */
   onSubmit(data: NgForm) {
-    //If the image is empty, then let's use a default one
-    if(data.value.image === "") {
-      data.value.image = '../../../../assets/img/Unknown.png';
-    }
+    var fd = this.uploadFile(this.image);
+    var obj = data.value;
 
-    //Send the updated item to the parent
-    this.add.emit(data.value);
+    if(data.value.image === "") {
+      obj['image'] = 'https://res.cloudinary.com/deduiu1pn/image/upload/v1551723636/dvdmvgfsmpunrw7ql4ax.png';
+      //Send the updated item to the parent
+      this.add.emit(obj);
+    } else {
+      this.http.post(this.url, fd).subscribe(image => {
+        obj['image'] = image['secure_url'];
+        //Send the updated item to the parent
+        this.add.emit(obj);
+      });
+    }
   }
 
 }

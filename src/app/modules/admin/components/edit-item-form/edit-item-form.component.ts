@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { Item } from 'src/app/models/item';
 import { Tag } from 'src/app/models/tag';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'edit-item-form',
@@ -11,6 +12,7 @@ import { Tag } from 'src/app/models/tag';
 export class EditItemFormComponent implements OnInit {
   //Instance variables
   public id: number = 0;
+  public url: string = `https://api.cloudinary.com/v1_1/deduiu1pn/upload`;
   public name: string = '';
   public description: string = '';
   public image: string = '';
@@ -31,7 +33,7 @@ export class EditItemFormComponent implements OnInit {
   @Input() items: Item[];
   @Output() update = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -60,19 +62,49 @@ export class EditItemFormComponent implements OnInit {
   }
 
   /**
+   * Method that will setup the file to be sent 
+   * to cloudinary.
+   * @param file 
+   */
+  uploadFile(file) {
+    var fd = new FormData();
+
+    fd.append('upload_preset', "ls2g5en7");
+    fd.append('tags', 'browser_upload');
+    fd.append('file', file);
+
+    return fd;
+  }
+
+  /**
+   * Method that will get the file from the input.
+   * @param event 
+   */
+  handleFiles(event) {
+    this.image = event.target.files[0];
+  }
+
+  /**
    * Method that will send the data to
    * the parent component, Wrapper.
    */
   onSubmit(data: NgForm) {
-    //Since you can't set a default value for an image,
-    //we need to check and see if the user chose one.
-    if(data.value.image === "") {
-      data.value.image = this.filename;
-    }
+    var fd = this.uploadFile(this.image);
+    var obj = data.value;
 
-    //Send the updated item to the parent
-    //this.update.emit(data.value);
-    this.displayEdit = false;
+    if(data.value.image === "") {
+      obj['image'] = this.filename;
+      //Send the updated item to the parent
+      this.update.emit(obj);
+      this.displayEdit = false;
+    } else {
+      this.http.post(this.url, fd).subscribe(image => {
+        obj['image'] = image['secure_url'];
+        //Send the updated item to the parent
+        this.update.emit(obj);
+        this.displayEdit = false;
+      });
+    }
   }
 
   //MUTATORS

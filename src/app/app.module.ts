@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
+import * as  Cloudinary from 'cloudinary-core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -16,7 +17,8 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'deduiu1pn'})
   ],
   providers: [],
   bootstrap: [AppComponent]
