@@ -75,7 +75,7 @@ export class AddItemFormComponent implements OnInit {
     var fd = this.uploadFile(this.image);
     var obj = data.value;
 
-    if(data.value.image === "") {
+    if(typeof data.value.image === "undefined") {
       obj['image'] = 'https://res.cloudinary.com/deduiu1pn/image/upload/v1551723636/dvdmvgfsmpunrw7ql4ax.png';
       //Send the updated item to the parent
       this.add.emit(obj);
