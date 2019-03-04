@@ -142,14 +142,13 @@ export class WrapperComponent implements OnInit {
    */
   onStopAdd(stop: Stop) {
     var stopObj = {
-      id: stop.id,
-      name: stop.name,
       stop: {
+        id: stop.id,
+        name: stop.name,
         items: stop.items
       }
     };
 
-    //console.log(stopObj);
     this.stopService.updateStop(stopObj).subscribe()
   }
 

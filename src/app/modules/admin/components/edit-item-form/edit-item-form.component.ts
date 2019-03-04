@@ -92,7 +92,7 @@ export class EditItemFormComponent implements OnInit {
     var fd = this.uploadFile(this.image);
     var obj = data.value;
 
-    if(data.value.image === "") {
+    if(typeof data.value.image === "undefined") {
       obj['image'] = this.filename;
       //Send the updated item to the parent
       this.update.emit(obj);
