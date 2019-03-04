@@ -96,11 +96,13 @@ export class EditItemFormComponent implements OnInit {
       obj['image'] = this.filename;
       //Send the updated item to the parent
       this.update.emit(obj);
+      this.displayEdit = false;
     } else {
       this.http.post(this.url, fd).subscribe(image => {
         obj['image'] = image['secure_url'];
         //Send the updated item to the parent
         this.update.emit(obj);
+        this.displayEdit = false;
       });
     }
   }

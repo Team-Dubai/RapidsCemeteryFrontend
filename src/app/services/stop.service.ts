@@ -23,4 +23,13 @@ export class StopService {
   getStops(): Observable<Stop[]> {
     return this.http.get<Stop[]>(this.itemsUrl+'getAllStops');
   }
+
+  /**
+   * Method that will use the Angular http client to update a stop
+   * using the API.
+   * @param stop 
+   */
+  updateStop(stop: object): Observable<Stop> {
+    return this.http.post<Stop>(this.itemsUrl+'saveStop', stop);
+  }
 }
