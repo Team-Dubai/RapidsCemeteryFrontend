@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Stop } from 'src/app/models/stop';
+import { StopService } from 'src/app/services/stop.service';
+import { WizardComponent } from '../wizard/wizard.component';
 
 @Component({
   selector: 'map',
@@ -10,14 +13,17 @@ export class MapComponent implements OnInit {
   private stopsRect: any = [];
   private stopsLetter: any = [];
   private tourStop: number;
+  public stops: Stop[];
+  @ViewChild(WizardComponent) child: WizardComponent;
 
-  constructor() { }
+  constructor(private stopService: StopService) { }
 
   ngOnInit() {
     //Set the values, so we can manipulate the map
     this.stopsRect = document.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'rect');
     this.stopsLetter = document.getElementsByTagNameNS('http://www.w3.org/2000/svg', 'text');
     this.tourStop = 0;
+    this.getAllStops();
   }
 
   /**
@@ -73,5 +79,14 @@ export class MapComponent implements OnInit {
     ////Add the highlight to the stop
     this.stopsRect[this.tourStop].setAttribute('id', 'active-rect');
     this.stopsLetter[this.tourStop].setAttribute('id', 'active-letter');
+  }
+
+  /**
+   * Method that will utilize the tour service
+   * to retrieve all the stops.
+   */
+  getAllStops() {
+    this.stopService.getStops()
+      .subscribe(stops => this.stops = stops);
   }
 }

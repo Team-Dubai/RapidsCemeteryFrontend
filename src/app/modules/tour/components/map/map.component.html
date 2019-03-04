@@ -53,40 +53,28 @@
     <text transform="matrix(1 0 0 1 92.7303 319.6345)" class="letter">W.</text>
     <text transform="matrix(1 0 0 1 288.9268 137.1436)" class="letter">V.</text>
   </svg>
-  <form-wizard>
-    <wizard-step (onNext)="nextStop(map)" (onPrev)="prevStop(map)" (onComplete)="endTour(map)">
-      <h1>STOP 1:</h1>
-      <h4 class="text-center">Item 1</h4>
-        <img src="./../../../../../assets/img/Unknown.png" class="img-fluid mx-auto d-block" height="190" width="253" alt="">
-        <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id 
-          ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque 
-          nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        <h4 class="text-center">Item 2</h4>
-        <img src="./../../../../../assets/img/Unknown.png" class="img-fluid mx-auto d-block" height="190" width="253" alt="">
-        <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id 
-          ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque 
-          nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-    </wizard-step>
-    <wizard-step (onNext)="nextStop(map)" (onPrev)="prevStop(map)" (onComplete)="endTour(map)">
-      <h1>STOP 2:</h1>
-      <h4 class="text-center">Item 1</h4>
-        <img src="./../../../../../assets/img/Unknown.png" class="img-fluid mx-auto d-block" height="190" width="253" alt="">
-        <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id 
-          ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque 
-          nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-    </wizard-step>
-    <wizard-step (onNext)="nextStop(map)" (onPrev)="prevStop(map)" (onComplete)="endTour(map)">
-      <h1>STOP 3:</h1>
-      <h4 class="text-center">Item 1</h4>
-        <img src="./../../../../../assets/img/Unknown.png" class="img-fluid mx-auto d-block" height="190" width="253" alt="">
-        <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id 
-          ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque 
-          nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-        <h4 class="text-center">Item 2</h4>
-        <img src="./../../../../../assets/img/Unknown.png" class="img-fluid mx-auto d-block" height="190" width="253" alt="">
-        <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id 
-          ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque 
-          nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+  <form-wizard [stops]="stops">
+    <wizard-step *ngFor="let stop of stops" (onNext)="nextStop(map)" (onPrev)="prevStop(map)" (onComplete)="endTour(map)">
+      <h1>{{stop.name}}</h1>
+      <div *ngFor="let item of stop.items">
+        <h4 class="text-center">{{item.name}}</h4>
+        <img src="{{item.image}}" class="img-fluid mx-auto d-block" alt="" height="190" width="253">
+        <ng-container *ngIf="item.category === 'PLANT'; else burials">
+          <p><span class="font-weight-bold">Description: </span>{{item.description}}</p>
+          <p><span class="font-weight-bold">Plot Designation: </span>{{item.plot}}</p>
+        </ng-container>
+        <ng-template #burials>
+          <ng-container>
+            <p><span class="font-weight-bold">Date of Birth: </span>{{item.dateOfBirth}}</p>
+            <p><span class="font-weight-bold">Place of Birth: </span>{{item.placeOfBirth}}</p>
+            <p><span class="font-weight-bold">Date of Death: </span>{{item.dateOfDeath}}</p>
+            <p><span class="font-weight-bold">Place of Death: </span>{{item.placeOfDeath}}</p>
+            <p><span class="font-weight-bold">Plot Designation: </span>{{item.plot}}</p>
+            <p><span class="font-weight-bold">Veteran Information: </span>{{item.veteranInformation}}</p>
+            <p><span class="font-weight-bold">Notes: </span>{{item.notes}}</p>
+          </ng-container>
+        </ng-template>
+      </div>
     </wizard-step>
   </form-wizard>
 </div>

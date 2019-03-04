@@ -10,8 +10,9 @@
  * FORKED AUTHOR: Luis Daniel
  * URL: https://github.com/3dluis/angular2-wizard
  */
-import { Component, Output, Input, EventEmitter, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
+import { Component, Output, Input, EventEmitter, ContentChildren, QueryList, AfterContentInit, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { WizardStepComponent } from '../wizard-step/wizard-step.component';
+import { Stop } from 'src/app/models/stop';
 
 @Component({
   selector: 'form-wizard',
@@ -27,10 +28,10 @@ import { WizardStepComponent } from '../wizard-step/wizard-step.component';
     <div class="card-block">
       <ng-content></ng-content>
     </div>
-    <div class="card-footer" [hidden]="isCompleted">
+    <div *ngIf="loaded" class="card-footer" [hidden]="isCompleted">
         <button type="button" class="btn btn-dark float-left" (click)="previous()" [hidden]="!hasPrevStep || !activeStep.showPrev">Previous Stop</button>
-        <button type="button" class="btn btn-dark float-right" (click)="next()" [disabled]="!activeStep.isValid" [hidden]="!hasNextStep || !activeStep.showNext">Next Stop</button>
-        <button type="button" class="btn btn-dark float-right" (click)="complete()" [disabled]="!activeStep.isValid" [hidden]="hasNextStep">End of Tour</button>
+        <button type="button" class="btn btn-dark float-right" (click)="next()" [hidden]="!hasNextStep || !activeStep.showNext">Next Stop</button>
+        <button type="button" class="btn btn-dark float-right" (click)="complete()" [hidden]="hasNextStep">End of Tour</button>
     </div>
   </div>`
   ,
@@ -47,20 +48,28 @@ import { WizardStepComponent } from '../wizard-step/wizard-step.component';
   ]
 })
 export class WizardComponent implements AfterContentInit {
-  @ContentChildren(WizardStepComponent)
-  wizardSteps: QueryList<WizardStepComponent>;
+  @Input() stops: Stop[];
+  @ContentChildren(WizardStepComponent) wizardSteps: QueryList<WizardStepComponent>;
 
   private _steps: Array<WizardStepComponent> = [];
   private _isCompleted: boolean = false;
+  public loaded: boolean = false;
 
-  @Output()
-  onStepChanged: EventEmitter<WizardStepComponent> = new EventEmitter<WizardStepComponent>();
+  @Output() onStepChanged: EventEmitter<WizardStepComponent> = new EventEmitter<WizardStepComponent>();
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngAfterContentInit() {
-    this.wizardSteps.forEach(step => this._steps.push(step));
-    this.steps[0].isActive = true;
+    this.wizardSteps.changes.subscribe(() => {
+      this.wizardSteps.toArray().forEach(el => {
+        this._steps.push(el);
+      });
+
+      setTimeout(()=> {
+        this.steps[0].isActive = true;
+        this.loaded = true;
+      }, 0);
+    });
   }
 
   get steps(): Array<WizardStepComponent> {
@@ -76,7 +85,7 @@ export class WizardComponent implements AfterContentInit {
   }
 
   set activeStep(step: WizardStepComponent) {
-    if (step !== this.activeStep && !step.isDisabled) {
+    if (step !== this.activeStep) {
       this.activeStep.isActive = false;
       step.isActive = true;
       this.onStepChanged.emit(step);
