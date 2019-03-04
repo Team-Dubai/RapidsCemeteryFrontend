@@ -16,6 +16,7 @@ import { EditTagFormComponent } from './components/edit-tag-form/edit-tag-form.c
 import { DeleteTagFormComponent } from './components/delete-tag-form/delete-tag-form.component';
 import { AddStopFormComponent } from './components/add-stop-form/add-stop-form.component';
 import { DeleteStopFormComponent } from './components/delete-stop-form/delete-stop-form.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 const routes: Routes = [
   { 
@@ -30,7 +31,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     NgbTabsetModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule
   ],
   providers: [ItemService]
 })
