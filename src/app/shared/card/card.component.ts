@@ -78,7 +78,7 @@ export class CardComponent implements OnInit {
           item[i].image = item[i].images[0];
         }
 
-        this.items = item
+        this.items = item;
       });
   }
 
@@ -102,7 +102,7 @@ export class CardComponent implements OnInit {
           item[i].image = item[i].images[0];
         }
         
-        this.items = item
+        this.burials = item;
       });
   }
 
@@ -126,7 +126,7 @@ export class CardComponent implements OnInit {
         item[i].image = item[i].images[0];
       }
       
-      this.items = item
+      this.trails = item;
     });
   }
 
