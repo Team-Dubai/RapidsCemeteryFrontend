@@ -6,7 +6,9 @@
     </button>
   </div>
   <div class="modal-body">
-    <img src="{{item.image}}" class="img-fluid" alt="">
+    <div *ngFor="let img of item.images">
+      <img src="{{img}}" class="img-fluid" alt="">
+    </div>
     <p><span class="font-weight-bold">Description: </span>{{item.description}}</p>
     <p><span class="font-weight-bold">Plot Designation: </span>{{item.plot}}</p>
   </div>
@@ -20,7 +22,9 @@
       </button>
       </div>
       <div class="modal-body">
-        <img src="{{item.image}}" class="img-fluid" alt="">
+        <div *ngFor="let img of item.images">
+          <img src="{{img}}" class="img-fluid" alt="">
+        </div>
         <p><span class="font-weight-bold">Date of Birth: </span>{{item.dateOfBirth}}</p>
         <p><span class="font-weight-bold">Place of Birth: </span>{{item.placeOfBirth}}</p>
         <p><span class="font-weight-bold">Date of Death: </span>{{item.dateOfDeath}}</p>
@@ -39,7 +43,9 @@
     </button>
   </div>
   <div class="modal-body">
-    <img src="{{item.image}}" class="img-fluid" alt="">
+    <div *ngFor="let img of item.images">
+      <img src="{{img}}" class="img-fluid" alt="">
+    </div>
     <p><span class="font-weight-bold">Description: </span>{{item.description}}</p>
     <p><span class="font-weight-bold">Link: </span><a href="{{item.media}}">Take Me There!</a></p>
   </div>

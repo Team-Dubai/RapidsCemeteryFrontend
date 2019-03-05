@@ -110,6 +110,18 @@ export class MapComponent implements OnInit {
    */
   getAllStops() {
     this.stopService.getStops()
-      .subscribe(stops => this.stops = stops);
+      .subscribe(stops => {
+        for(var i=0; i < stops.length; i++) {
+          for(var j=0; j < stops[i].items.length; j++) {
+            if(stops[i].items[j].image === null) {
+              continue;
+            }
+            stops[i].items[j].images = stops[i].items[j].image.split(',');
+            stops[i].items[j].image = stops[i].items[j].images[0];
+          }
+        }
+
+        this.stops = stops
+      });
   }
 }

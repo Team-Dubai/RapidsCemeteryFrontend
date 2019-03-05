@@ -16,6 +16,7 @@ export class EditItemFormComponent implements OnInit {
   public name: string = '';
   public description: string = '';
   public image: string = '';
+  public images: string[] = [];
   public filename: string = '';
   public category: string = '';
   public dateOfBirth: string = '';
@@ -81,7 +82,11 @@ export class EditItemFormComponent implements OnInit {
    * @param event 
    */
   handleFiles(event) {
-    this.image = event.target.files[0];
+    for(var i = 0; i < event.target.files.length; i++) {
+      if(!this.images.includes(event.target.files[i])) {
+        this.images.push(event.target.files[i]);
+      }
+    }
   }
 
   /**
@@ -89,21 +94,28 @@ export class EditItemFormComponent implements OnInit {
    * the parent component, Wrapper.
    */
   onSubmit(data: NgForm) {
-    var fd = this.uploadFile(this.image);
     var obj = data.value;
+    obj['images'] = [];
 
-    if(typeof data.value.image === "undefined") {
-      obj['image'] = this.filename;
+    if(this.images.length === 0) {
+      console.log(this.filename);
+      obj['images'] = this.filename;
       //Send the updated item to the parent
       this.update.emit(obj);
       this.displayEdit = false;
     } else {
-      this.http.post(this.url, fd).subscribe(image => {
-        obj['image'] = image['secure_url'];
-        //Send the updated item to the parent
-        this.update.emit(obj);
-        this.displayEdit = false;
-      });
+      for(var i = 0; i < this.images.length; i++) {
+        var fd = this.uploadFile(this.images[i]);
+        this.http.post(this.url, fd).subscribe(image => {
+          obj['images'].push(image['secure_url']);
+        });
+  
+        if(this.images.length-1 === i) {
+          //Send the updated item to the parent
+          this.update.emit(obj);
+          this.displayEdit = false;
+        }
+      }
     }
   }
 
