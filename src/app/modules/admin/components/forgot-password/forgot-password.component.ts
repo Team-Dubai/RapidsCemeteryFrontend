@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,19 +9,19 @@ import { NgForm } from '@angular/forms';
 })
 export class ForgotPasswordComponent implements OnInit {
   //Instance variables
-  public email: string = '';
+  public username: string = '';
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
   /**
    * Method that will send the data to
-   * the parent component, Wrapper.
+   * the API.
    */
   onSubmit(data: NgForm) {
-  
+    this.authenticationService.sendForgotPassword(data.value).subscribe();
   }
 
 }

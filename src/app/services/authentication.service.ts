@@ -20,4 +20,13 @@ export class AuthenticationService {
     return this.http.post<Config>(this.adminUrl, credentials, {observe: 'response'});
   }
 
+  /**
+   * Method that will use the Angular http client to send an email
+   * using the API.
+   * @param item 
+   */
+  sendForgotPassword(data: object): Observable<object> {
+    return this.http.post<object>(this.adminUrl+'/forgottenPassword', data);
+  }
+
 }
