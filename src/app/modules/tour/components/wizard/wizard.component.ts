@@ -104,7 +104,8 @@ export class WizardComponent implements AfterContentInit {
     return this.activeStepIndex > 0;
   }
 
-  public goToStep(step: WizardStepComponent): void {
+  public goToStep(index: number): void {
+    var step = this.steps[index];
     if (!this.isCompleted) {
       this.activeStep = step;
     }

@@ -27,6 +27,29 @@ export class MapComponent implements OnInit {
   }
 
   /**
+   * Method that will take the user to a specific spot
+   * by clicking on the map.
+   * @param event 
+   */
+  goTo(event) {
+    for(var i = 0; i < this.stopsLetter.length; i++) {
+      if(this.stopsLetter[i].innerHTML === event.target.innerHTML) {
+        //Remove the highlight from the stop
+        this.stopsRect[this.tourStop].removeAttribute('id');
+        this.stopsLetter[this.tourStop].removeAttribute('id');
+        
+        this.tourStop = i;
+        this.child.goToStep(i);
+
+        //Add the highlight to the stop
+        this.stopsRect[this.tourStop].setAttribute('id', 'active-rect');
+        this.stopsLetter[this.tourStop].setAttribute('id', 'active-letter');
+        break;
+      }
+    }
+  }
+
+  /**
    * Method that will display the next stop on the map.
    * 
    * @param el 
@@ -76,7 +99,7 @@ export class MapComponent implements OnInit {
       this.tourStop = 0;
     }
 
-    ////Add the highlight to the stop
+    //Add the highlight to the stop
     this.stopsRect[this.tourStop].setAttribute('id', 'active-rect');
     this.stopsLetter[this.tourStop].setAttribute('id', 'active-letter');
   }
