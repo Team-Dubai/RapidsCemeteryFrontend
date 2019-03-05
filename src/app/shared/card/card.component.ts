@@ -69,7 +69,17 @@ export class CardComponent implements OnInit {
    */
   getAllItems() {
     this.itemService.getItems()
-      .subscribe(item => this.items = item);
+      .subscribe(item => {
+        for(var i=0; i < item.length; i++) {
+          if(item[i].image === null) {
+            continue;
+          }
+          item[i].images = item[i].image.split(',');
+          item[i].image = item[i].images[0];
+        }
+
+        this.items = item;
+      });
   }
 
   /**
@@ -83,7 +93,17 @@ export class CardComponent implements OnInit {
     };
 
     this.itemService.getItemsByCategory(categoryObject)
-      .subscribe(burial => this.burials = burial);
+      .subscribe(item => {
+        for(var i=0; i < item.length; i++) {
+          if(item[i].image === null) {
+            continue;
+          }
+          item[i].images = item[0].image.split(',');
+          item[i].image = item[i].images[0];
+        }
+        
+        this.burials = item;
+      });
   }
 
   /**
@@ -97,7 +117,17 @@ export class CardComponent implements OnInit {
     };
 
     this.itemService.getItemsByCategory(categoryObject)
-      .subscribe(trail => this.trails = trail);
+    .subscribe(item => {
+      for(var i=0; i < item.length; i++) {
+        if(item[i].image === null) {
+          continue;
+        }
+        item[i].images = item[0].image.split(',');
+        item[i].image = item[i].images[0];
+      }
+      
+      this.trails = item;
+    });
   }
 
   /**

@@ -52,9 +52,13 @@ export class WrapperComponent implements OnInit {
   onItemAdd(item: Item) {
     //Set and send the object to the API
     //Update the item in the local array, so it changes on screen without refreshing
-    this.setSendItem(item);
-    this.itemService.addItem(this.getSendItem())
-      .subscribe(item => this.items.push(item));
+    setTimeout(()=>{
+      item.image = item.images.join();
+      delete item.images;
+      this.setSendItem(item);
+      this.itemService.addItem(this.getSendItem())
+        .subscribe(item => this.items.push(item));
+    }, 1000);
   }
 
   /**
@@ -64,14 +68,22 @@ export class WrapperComponent implements OnInit {
    * @param item 
    */
   onItemUpdate(item: Item) {
-    //Get the item that needs to be changed
-    let changeItem = this.getItems().find(i => i.id == item.id);
-
     //Set and send the object to the API
     //Update the item in the local array, so it changes on screen without refreshing
-    this.setSendItem(item);
-    this.itemService.updateItem(this.getSendItem())
-      .subscribe(item => this.setItemInItems(this.getItems().findIndex(i => i.id == changeItem.id), item));
+    setTimeout(()=>{
+      //Get the item that needs to be changed
+      let changeItem = this.getItems().find(i => i.id == item.id);
+      if(Array.isArray(item.images)) {
+        item.image = item.images.join();
+      } else {
+        item.image = item.images;
+      }
+      
+      delete item.images;
+      this.setSendItem(item);
+      this.itemService.updateItem(this.getSendItem())
+        .subscribe(item => this.setItemInItems(this.getItems().findIndex(i => i.id == changeItem.id), item));
+    }, 1000);
   }
 
   /**

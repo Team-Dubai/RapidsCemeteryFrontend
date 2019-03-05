@@ -14,6 +14,7 @@ export class AddItemFormComponent implements OnInit {
   public url: string = `https://api.cloudinary.com/v1_1/deduiu1pn/upload`;
   public description: string = '';
   public image: string = '';
+  public images: string[] = [];
   public category: string = '';
   public dateOfBirth: string = '';
   public placeOfBirth: string = '';
@@ -64,7 +65,11 @@ export class AddItemFormComponent implements OnInit {
    * @param event 
    */
   handleFiles(event) {
-    this.image = event.target.files[0];
+    for(var i = 0; i < event.target.files.length; i++) {
+      if(!this.images.includes(event.target.files[i])) {
+        this.images.push(event.target.files[i]);
+      }
+    }
   }
 
   /**
@@ -72,19 +77,25 @@ export class AddItemFormComponent implements OnInit {
    * the parent component, Wrapper.
    */
   onSubmit(data: NgForm) {
-    var fd = this.uploadFile(this.image);
     var obj = data.value;
-
-    if(typeof data.value.image === "undefined") {
-      obj['image'] = 'https://res.cloudinary.com/deduiu1pn/image/upload/v1551723636/dvdmvgfsmpunrw7ql4ax.png';
+    obj['images'] = [];
+    
+    if(this.images.length === 0) {
+      obj['images'] = 'https://res.cloudinary.com/deduiu1pn/image/upload/v1551723636/dvdmvgfsmpunrw7ql4ax.png';
       //Send the updated item to the parent
       this.add.emit(obj);
     } else {
-      this.http.post(this.url, fd).subscribe(image => {
-        obj['image'] = image['secure_url'];
-        //Send the updated item to the parent
-        this.add.emit(obj);
-      });
+      for(var i = 0; i < this.images.length; i++) {
+        var fd = this.uploadFile(this.images[i]);
+  
+        this.http.post(this.url, fd).subscribe(image => {
+          obj['images'].push(image['secure_url']);
+        });
+
+        if(this.images.length-1 === i) {
+          this.add.emit(obj);
+        }
+      }
     }
   }
 

@@ -6,6 +6,7 @@ export class Item {
     name: string;
     description: string;
     image: string;
+    images: string[];
     media: string;
     dateOfBirth: string;
     dateOfDeath: string;
