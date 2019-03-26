@@ -27,6 +27,7 @@
     <rect x="16.1" y="411.1" class="rect" width="88.5" height="139.5"/>
     <rect x="38.6" y="250.6" class="rect" width="135" height="118.5"/>
     <rect x="85.1" y="76.6" class="rect" width="427.5" height="103.5"/>
+    <rect x="592.1" y="352" class="rect" width="127.9" height="99.9"/>
     <text transform="matrix(1 0 0 1 572.0202 614.37)" class="letter" id="active-letter" (click)="goTo($event)">T.</text>
     <text transform="matrix(1 0 0 1 845.0718 568.8719)" class="letter" (click)="goTo($event)">M.</text>
     <text transform="matrix(1 0 0 1 1020.743 639.1307)" class="letter" (click)="goTo($event)">F.</text>
@@ -52,6 +53,7 @@
     <text transform="matrix(1 0 0 1 49.5325 493.6263)" class="letter" (click)="goTo($event)">X.</text>
     <text transform="matrix(1 0 0 1 92.7303 319.6345)" class="letter" (click)="goTo($event)">W.</text>
     <text transform="matrix(1 0 0 1 288.9268 137.1436)" class="letter" (click)="goTo($event)">V.</text>
+    <text transform="matrix(1 0 0 1 648.4736 415.0511)" class="letter" (click)="goTo($event)">Z.</text>
   </svg>
   <form-wizard [stops]="stops">
     <wizard-step *ngFor="let stop of stops" (onNext)="nextStop(map)" (onPrev)="prevStop(map)" (onComplete)="endTour(map)">
@@ -63,19 +65,13 @@
         </div>
         <ng-container *ngIf="item.category === 'PLANT'; else burials">
           <p><span class="font-weight-bold">Description: </span>{{item.description}}</p>
-          <p><span class="font-weight-bold">Plot Designation: </span>{{item.plot}}</p>
         </ng-container>
         <ng-template #burials>
           <ng-container>
-            <p><span class="font-weight-bold">Date of Birth: </span>{{item.dateOfBirth}}</p>
-            <p><span class="font-weight-bold">Place of Birth: </span>{{item.placeOfBirth}}</p>
-            <p><span class="font-weight-bold">Date of Death: </span>{{item.dateOfDeath}}</p>
-            <p><span class="font-weight-bold">Place of Death: </span>{{item.placeOfDeath}}</p>
-            <p><span class="font-weight-bold">Plot Designation: </span>{{item.plot}}</p>
-            <p><span class="font-weight-bold">Veteran Information: </span>{{item.veteranInformation}}</p>
-            <p><span class="font-weight-bold">Notes: </span>{{item.notes}}</p>
+            <p><span class="font-weight-bold">Narrative: </span>{{item.description}}</p>
           </ng-container>
         </ng-template>
+        <p><span class="font-weight-bold">Plot Designation: </span>{{item.plot}}</p>
       </div>
     </wizard-step>
   </form-wizard>

@@ -3,6 +3,9 @@
     <div class="col-lg-6 col-md-7 col-sm-10 mx-auto">
       <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm); contactForm.reset()" ngNativeValidate class="bg-white p-5" enctype='multipart/form-data'>
         <div class="form-group">
+          <input type="text" class="form-control border-0 p-4" placeholder="Rapids Cemetery" readonly>
+        </div>
+        <div class="form-group">
           <input type="email" [(ngModel)]="fromMail" name='fromMail' class="form-control border-0 p-4" placeholder="Enter email" required>
         </div>
         <div class="form-group">

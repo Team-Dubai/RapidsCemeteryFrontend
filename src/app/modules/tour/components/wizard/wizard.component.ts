@@ -25,13 +25,13 @@ import { Stop } from 'src/app/models/stop';
         </li>
       </ul>
     </div>
-    <div class="card-block">
-      <ng-content></ng-content>
-    </div>
     <div *ngIf="loaded" class="card-footer" [hidden]="isCompleted">
         <button type="button" class="btn btn-dark float-left" (click)="previous()" [hidden]="!hasPrevStep || !activeStep.showPrev">Previous Stop</button>
         <button type="button" class="btn btn-dark float-right" (click)="next()" [hidden]="!hasNextStep || !activeStep.showNext">Next Stop</button>
         <button type="button" class="btn btn-dark float-right" (click)="complete()" [hidden]="hasNextStep">End of Tour</button>
+    </div>
+    <div class="card-block">
+      <ng-content></ng-content>
     </div>
   </div>`
   ,
