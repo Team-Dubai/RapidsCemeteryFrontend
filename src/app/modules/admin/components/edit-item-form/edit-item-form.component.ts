@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import { Item } from 'src/app/models/item';
 import { Tag } from 'src/app/models/tag';
@@ -30,13 +30,61 @@ export class EditItemFormComponent implements OnInit {
   public displayEdit: boolean = false;
   private item: Item;
   public tags: Tag[];
+  private checkedTags: Tag[] = [];
   @Input() tagsInput: Tag[];
   @Input() items: Item[];
   @Output() update = new EventEmitter<string>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
+  }
+
+  /**
+   * Method that will loop through and check all of the tags that
+   * are set for the specific item.
+   */
+  setupTags() {
+    var checkedValues: string[] = []; 
+
+    for(var i = 0; i < this.tags.length; i++) {
+      checkedValues.push(this.tags[i].name);
+      this.checkedTags.push(this.tags[i]);
+    }
+
+    //Grab the elements and then loop through checking/unchecking the necessary tags
+    var element = document.getElementsByClassName("form-check-label-edit");
+    var elementInput = document.getElementsByClassName("form-check-input-edit");
+    console.log(elementInput.length);
+    for(var i = 0; i < element.length; i++) {
+      var ele = <HTMLLabelElement> element[i];
+      var eleInput = <HTMLInputElement> elementInput[i];
+      if(checkedValues.includes(ele.textContent)) {
+        eleInput.checked = true;
+      } else {
+        eleInput.checked = false;
+      }
+    }
+  }
+
+  /**
+   * Store and keep track of the checked/unchecked tags. This will
+   * fire every time a tag is touched.
+   * @param tag 
+   */
+  onCheckChange(tag: Tag) {
+    //If we have the tag, then remove it
+    //else add it.
+    if(!this.checkedTags.includes(tag)) {
+      this.checkedTags.push(tag);
+    } else {
+      for(var i = 0; i < this.checkedTags.length; i++){ 
+        if(this.checkedTags[i].name === tag.name) {
+          this.checkedTags.splice(i, 1); 
+          break;
+        }
+      }
+    }
   }
 
   /**
@@ -48,6 +96,9 @@ export class EditItemFormComponent implements OnInit {
     this.displayEdit = true;
     let item = this.getItems().find(item => item.id == this.id);
     this.setItem(item);
+    //ngIf has been displayed, so detect the changes, then set the tags
+    this.cdRef.detectChanges();
+    this.setupTags();
   }
 
   /**
@@ -96,9 +147,9 @@ export class EditItemFormComponent implements OnInit {
   onSubmit(data: NgForm) {
     var obj = data.value;
     obj['images'] = [];
+    data.value['tags'] = this.checkedTags;
 
     if(this.images.length === 0) {
-      console.log(this.filename);
       obj['images'] = this.filename;
       //Send the updated item to the parent
       this.update.emit(obj);

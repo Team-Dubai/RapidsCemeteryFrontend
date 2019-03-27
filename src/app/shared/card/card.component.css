@@ -10,3 +10,8 @@ img {
 .container {
     margin-bottom: -2rem;
 }
+
+.more-info:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

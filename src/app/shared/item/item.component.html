@@ -36,17 +36,33 @@
   </ng-container>
 </ng-template>
 <ng-template #trails>
+  <ng-container *ngIf="whichItem === 'trail'; else completeBurial">
+    <div class="modal-header">
+      <h4 class="modal-title">{{item.name}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngFor="let img of item.images">
+        <img src="{{img}}" class="img-fluid" alt="">
+      </div>
+      <p><span class="font-weight-bold">Description: </span>{{item.description}}</p>
+      <p><span class="font-weight-bold">Link: </span><a href="{{item.media}}">Take Me There!</a></p>
+    </div>
+  </ng-container>
+</ng-template>
+<ng-template #completeBurial>
   <div class="modal-header">
     <h4 class="modal-title">{{item.name}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    <div *ngFor="let img of item.images">
-      <img src="{{img}}" class="img-fluid" alt="">
     </div>
-    <p><span class="font-weight-bold">Description: </span>{{item.description}}</p>
-    <p><span class="font-weight-bold">Link: </span><a href="{{item.media}}">Take Me There!</a></p>
-  </div>
-</ng-template>
+    <div class="modal-body">
+      <div *ngFor="let img of item.images">
+        <img src="{{img}}" class="img-fluid" alt="">
+      </div>
+      <p><span class="font-weight-bold">Narrative: </span>{{item.description}}</p>
+    </div>
+  </ng-template>
