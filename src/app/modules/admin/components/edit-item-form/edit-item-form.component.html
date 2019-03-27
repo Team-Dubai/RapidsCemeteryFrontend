@@ -2,7 +2,7 @@
   <h3>Edit Item</h3>
   <div class='form-group'>
     <select class='form-control' [(ngModel)]="id" name="id">
-      <option *ngFor="let item of items" [value]="item.id">{{item.name}}</option>
+      <option *ngFor="let item of items" [value]="item.id">{{item.id}}: {{item.name}}</option>
     </select>
   </div>
   <div class='form-group'>
@@ -11,8 +11,8 @@
   <ng-template [ngIf]="displayEdit">
     <div class='form-group'>
       <select class='form-control' [ngModel]="category" (ngModelChange)="onChange($event)" name="category" required>
-        <option value="PLANT">Plant</option>
-        <option value="GRAVE">Grave</option>
+        <option value="PLANT">Natural History</option>
+        <option value="GRAVE">Person or Burial</option>
         <option value="TRAIL">Trail</option>
       </select>
     </div>
@@ -42,13 +42,16 @@
           <input type='text' [(ngModel)]="placeOfDeath" name='placeOfDeath' class='form-control border-0 p-4' placeholder="Place of Death" required>
         </div>
         <div class='form-group'>
-          <textarea [(ngModel)]="veteranInformation" name='veteranInformation' class='form-control border-0 p-4' placeholder="Veteran Information" required></textarea>
+          <textarea [(ngModel)]="veteranInformation" name='veteranInformation' class='form-control border-0 p-4' placeholder="Veteran Information"></textarea>
         </div>
         <div class='form-group'>
           <textarea [(ngModel)]="notes" name='notes' class='form-control border-0 p-4' placeholder="Notes" required></textarea>
         </div>
         <div class='form-group'>
           <input type='text' [(ngModel)]="plot" name='plot' class='form-control border-0 p-4' placeholder="Plot Designation">
+        </div>
+        <div class='form-group'>
+          <textarea [(ngModel)]="description" name='description' class='form-control border-0 p-4' placeholder="Narrative"></textarea>
         </div>
       </ng-container>
     </ng-template>
@@ -62,10 +65,11 @@
         </div>
       </ng-container>
     </ng-template>
-    <div class='form-group'>
-      <select #selectTags class='form-control' [ngModel]="tags" name="tags" multiple>
-        <option *ngFor="let tag of tagsInput" [value]="{'id':tag.id,'name':tag.name}">{{tag.name}}</option>
-      </select>
+    <div id="checks">
+      <div *ngFor="let tag of tagsInput" class="form-check">
+        <input class="form-check-input-edit" type="checkbox" [value]="{'id':tag.id,'name':tag.name}" id="{{tag.id}}" (change)="onCheckChange(tag)">
+        <label class="form-check-label-edit">{{tag.name}}</label>
+      </div>
     </div>
     <div class='form-group'>
       <input type='file' (change)="handleFiles($event)" multiple accept="image/*" class='form-control'>

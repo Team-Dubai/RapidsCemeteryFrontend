@@ -26,7 +26,7 @@ export class CardComponent implements OnInit {
     //complete list of burials
     if(this.whichItem === "info") {
       this.getAllItems();
-    } else if(this.whichItem === "burial") {
+    } else if(this.whichItem === "burial" || this.whichItem === "completeBurial") {
       this.getAllBurials();
     } else if(this.whichItem === "trail") {
       this.getAllTrails();
@@ -54,7 +54,7 @@ export class CardComponent implements OnInit {
       } else {
         modelRef.componentInstance.whichItem = this.whichItem;
       }
-    } else if(this.whichItem === "burial") {
+    } else if(this.whichItem === "burial" || this.whichItem === "completeBurial") {
       modelRef.componentInstance.item = this.getBurials().find(item => item.id === id);
       modelRef.componentInstance.whichItem = this.whichItem;
     } else if(this.whichItem === "trail") {

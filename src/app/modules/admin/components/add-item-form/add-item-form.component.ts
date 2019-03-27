@@ -25,12 +25,33 @@ export class AddItemFormComponent implements OnInit {
   public media: string = '';
   public plot: string = '';
   public tags: Tag[];
+  private checkedTags: Tag[] = [];
   @Input() tagsInput: Tag[];
   @Output() add = new EventEmitter<string>();
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+  }
+
+  /**
+   * Store and keep track of the checked/unchecked items. This will
+   * fire every time an item is touched.
+   * @param tag 
+   */
+  onCheckChange(tag: Tag) {
+    //If we have the item, then remove it
+    //else add it.
+    if(!this.checkedTags.includes(tag)) {
+      this.checkedTags.push(tag);
+    } else {
+      for(var i = 0; i < this.checkedTags.length; i++){ 
+        if(this.checkedTags[i].name === tag.name) {
+          this.checkedTags.splice(i, 1); 
+          break;
+        }
+      }
+    }
   }
 
   /**
@@ -79,6 +100,7 @@ export class AddItemFormComponent implements OnInit {
   onSubmit(data: NgForm) {
     var obj = data.value;
     obj['images'] = [];
+    data.value['tags'] = this.checkedTags;
     
     if(this.images.length === 0) {
       obj['images'] = 'https://res.cloudinary.com/deduiu1pn/image/upload/v1551723636/dvdmvgfsmpunrw7ql4ax.png';

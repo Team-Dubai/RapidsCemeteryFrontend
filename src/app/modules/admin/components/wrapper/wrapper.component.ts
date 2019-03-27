@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ItemService } from 'src/app/services/item.service';
 import { TagService } from 'src/app/services/tag.service';
 import { Item } from 'src/app/models/item';
@@ -17,6 +17,8 @@ export class WrapperComponent implements OnInit {
   private tags: Tag[];
   private itemObject = {};
   private tagObject = {};
+  public error: boolean = false;
+  public errorMessage: string = '';
 
   constructor(private itemService: ItemService, private tagService: TagService, private stopService: StopService) { }
 
@@ -53,11 +55,24 @@ export class WrapperComponent implements OnInit {
     //Set and send the object to the API
     //Update the item in the local array, so it changes on screen without refreshing
     setTimeout(()=>{
-      item.image = item.images.join();
+      //Only join if an array, since join does not exist on a string type
+      if(Array.isArray(item.images)) {
+        item.image = item.images.join();
+      }
+
       delete item.images;
       this.setSendItem(item);
       this.itemService.addItem(this.getSendItem())
-        .subscribe(item => this.items.push(item));
+        .subscribe(item => {
+          //Check the response, so we can respond accordingly
+          if(item.status !== 200) {
+            this.errorMessage = "Oops.. something went wrong. Please try again!"
+            this.error = true;
+          } else {
+            this.items.push(item.body);
+            this.error = false;
+          }
+        });
     }, 1000);
   }
 
@@ -82,7 +97,16 @@ export class WrapperComponent implements OnInit {
       delete item.images;
       this.setSendItem(item);
       this.itemService.updateItem(this.getSendItem())
-        .subscribe(item => this.setItemInItems(this.getItems().findIndex(i => i.id == changeItem.id), item));
+        .subscribe(item => {
+          //Check the response, so we can respond accordingly
+          if(item.status !== 200) {
+            this.errorMessage = "Oops.. something went wrong. Please try again!"
+            this.error = true;
+          } else {
+            this.setItemInItems(this.getItems().findIndex(i => i.id == changeItem.id), item.body);
+            this.error = false;
+          }
+        });
     }, 1000);
   }
 
@@ -97,8 +121,17 @@ export class WrapperComponent implements OnInit {
       id: parseInt(id)
     };
 
-    this.itemService.deleteItem(itemIdObject).subscribe();
-    this.items = this.items.filter(item => item.id !== parseInt(id));
+    this.itemService.deleteItem(itemIdObject).subscribe(response => {
+      //Check the response, so we can respond accordingly
+      if(response === true) {
+        this.items = this.items.filter(item => item.id !== parseInt(id));
+        this.error = false;
+      } else {
+        this.errorMessage = "Oops.. something went wrong. Please try again!"
+        this.error = true;
+        window.scroll(0,0);
+      }
+    });
   }
 
   /**
@@ -112,7 +145,16 @@ export class WrapperComponent implements OnInit {
     //Update the tag in the local array, so it changes on screen without refreshing
     this.setSendTag(tag);
     this.tagService.addItem(this.getSendTag())
-      .subscribe(tag => this.tags.push(tag));
+      .subscribe(tag => {
+        //Check the response, so we can respond accordingly
+        if(tag.status !== 200) {
+          this.errorMessage = "Oops.. something went wrong. Please try again!"
+          this.error = true;
+        } else {
+          this.tags.push(tag.body);
+          this.error = false;
+        }
+      });
   }
 
   /**
@@ -129,7 +171,17 @@ export class WrapperComponent implements OnInit {
     //Update the item in the local array, so it changes on screen without refreshing
     this.setSendTag(tag);
     this.tagService.updateTag(this.getSendTag())
-      .subscribe(tag => this.setTagInTags(this.getTags().findIndex(i => i.id == changeTag.id), tag));
+      .subscribe(tag => {
+        //Check the response, so we can respond accordingly
+        if(tag.status !== 200) {
+          this.errorMessage = "Oops.. something went wrong. Please try again!"
+          this.error = true;
+          window.scroll(0,0);
+        } else {
+          this.setTagInTags(this.getTags().findIndex(i => i.id == changeTag.id), tag.body)
+          this.error = false;
+        }
+      });
   }
 
   /**
@@ -143,8 +195,17 @@ export class WrapperComponent implements OnInit {
       id: parseInt(id)
     };
 
-    this.tagService.deleteTag(tagIdObject).subscribe();
-    this.tags = this.tags.filter(tag => tag.id !== parseInt(id));
+    this.tagService.deleteTag(tagIdObject).subscribe(response => {
+      //Check the response, so we can respond accordingly
+      if(response === true) {
+        this.tags = this.tags.filter(tag => tag.id !== parseInt(id));
+        this.error = false;
+      } else {
+        this.errorMessage = "Oops.. something went wrong. Please try again!"
+        this.error = true;
+        window.scroll(0,0);
+      }
+    });
   }
 
   /**
@@ -161,7 +222,15 @@ export class WrapperComponent implements OnInit {
       }
     };
 
-    this.stopService.updateStop(stopObj).subscribe()
+    this.stopService.updateStop(stopObj).subscribe(response => {
+      //Check the response, so we can respond accordingly
+      if(response.status !== 200) {
+        this.errorMessage = "Oops.. something went wrong. Please try again!"
+        this.error = true;
+      } else {
+        this.error = false;
+      }
+    });
   }
 
   //ACCESSORS

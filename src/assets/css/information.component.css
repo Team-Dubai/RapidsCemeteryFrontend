@@ -1,0 +1,17 @@
+::ng-deep .card .card-header > h5 > button {
+    color: #1d2124;
+    text-decoration: none;
+}
+
+.rect {
+    fill: none;
+    stroke: yellow;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+}
+
+.letter {
+    fill: yellow;
+    font-size: 24px;
+    stroke-width: 2px;
+}

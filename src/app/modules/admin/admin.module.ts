@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from '../../shared/shared.module';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { ItemService } from 'src/app/services/item.service';
 import { AddItemFormComponent } from './components/add-item-form/add-item-form.component';
@@ -36,7 +37,8 @@ const routes: Routes = [
     SharedModule,
     NgbTabsetModule,
     FormsModule,
-    FileUploadModule
+    FileUploadModule,
+    NgbAlertModule
   ],
   providers: [ItemService]
 })

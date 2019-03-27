@@ -1,13 +1,15 @@
 .rect {
     fill: none;
-    stroke: #FFF200;
+    stroke: yellow;
     stroke-miterlimit: 10;
+    stroke-width: 2px;
 }
 
 .letter {
-    fill:#FFF200;
+    fill: yellow;
     font-size: 24px;
     cursor: pointer;
+    stroke-width: 2px;
 }
 
 #active-rect {
@@ -27,7 +29,6 @@ h4 {
 h1 {
     padding-top: 2rem;
     padding-left: 2rem;
-    text-decoration: underline;
 }
 
 img {

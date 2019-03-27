@@ -8,6 +8,7 @@ import { ItemComponent } from '../../shared/item/item.component';
 import { SearchComponent } from './components/search/search.component';
 import { ItemService } from 'src/app/services/item.service';
 import { FilterComponent } from './components/filter/filter.component';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { 
@@ -21,7 +22,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    NgbModule
+    NgbModule,
+    NgbAccordionModule
   ],
   entryComponents: [ItemComponent],
   providers: [ItemService]
