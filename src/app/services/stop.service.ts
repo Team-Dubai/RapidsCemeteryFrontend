@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Stop } from '../models/stop';
+import { Config } from 'protractor';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'JWT': localStorage.getItem('token') })
@@ -29,7 +30,7 @@ export class StopService {
    * using the API.
    * @param stop 
    */
-  updateStop(stop: object): Observable<Stop> {
-    return this.http.post<Stop>(this.itemsUrl+'saveStop', stop);
+  updateStop(stop: object): Observable<HttpResponse<Config>> {
+    return this.http.post<Config>(this.itemsUrl+'saveStop', stop, {observe: 'response'});
   }
 }

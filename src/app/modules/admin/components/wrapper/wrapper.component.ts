@@ -103,8 +103,17 @@ export class WrapperComponent implements OnInit {
       id: parseInt(id)
     };
 
-    this.itemService.deleteItem(itemIdObject).subscribe();
-    this.items = this.items.filter(item => item.id !== parseInt(id));
+    this.itemService.deleteItem(itemIdObject).subscribe(response => {
+      //Check the response, so we can respond accordingly
+      if(response === true) {
+        this.items = this.items.filter(item => item.id !== parseInt(id));
+        this.error = false;
+      } else {
+        this.errorMessage = "Oops.. something went wrong. Please try again!"
+        this.error = true;
+        window.scroll(0,0);
+      }
+    });
   }
 
   /**
@@ -176,7 +185,13 @@ export class WrapperComponent implements OnInit {
       }
     };
 
-    this.stopService.updateStop(stopObj).subscribe()
+    this.stopService.updateStop(stopObj).subscribe(response => {
+      //Check the response, so we can respond accordingly
+      if(response.status !== 200) {
+        this.errorMessage = "Oops.. something went wrong. Please try again!"
+        this.error = true;
+      }
+    });
   }
 
   //ACCESSORS
