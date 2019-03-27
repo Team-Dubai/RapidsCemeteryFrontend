@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -9,7 +9,14 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class AdminComponent implements OnInit {
   //Instance variables
   private isLoggedIn: boolean = false;
+  public error: boolean = false;
+  private _errorMessage: string = '';
   
+  @Input()
+  set errorMessage(message: string) {
+    this._errorMessage = message;
+  }
+
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
@@ -27,7 +34,19 @@ export class AdminComponent implements OnInit {
    */
   checkUser(credentials: object) {
     this.authService.getUserByCredentials(credentials)
-      .subscribe(response => this.setSession(response.headers.get('jwt')));
+      .subscribe(response => {
+        //Check the response, so we can respond accordingly
+        if(response.status === 200) {
+          if(response.headers.get('jwt') === null) {
+            this.errorMessage = "Incorrect username or password";
+            this.error = true;
+          }
+          this.setSession(response.headers.get('jwt'))
+        } else {
+          this.errorMessage = "Oops.. something went wrong. Please try again!"
+          this.error = true;
+        }
+      });
   }
 
   /**

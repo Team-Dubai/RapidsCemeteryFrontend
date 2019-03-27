@@ -47,7 +47,7 @@ export class TagService {
    * using the API.
    * @param tagIdObject 
    */
-  deleteTag(tagIdObject: object): Observable<Tag> {
-    return this.http.post<Tag>(this.tagsUrl+'removeTagById', tagIdObject);
+  deleteTag(tagIdObject: object): Observable<boolean> {
+    return this.http.post<boolean>(this.tagsUrl+'removeTagById', tagIdObject);
   }
 }

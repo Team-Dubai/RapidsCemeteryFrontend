@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6 col-md-7 col-sm-10 mx-auto">
+      <ngb-alert *ngIf="error === true" type="danger" [dismissible]="false">{{errorMessage}}</ngb-alert>
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm); loginForm.reset()" ngNativeValidate class="bg-white p-5" enctype='multipart/form-data'>
         <div class='form-group'>
           <input type='text' [(ngModel)]="username" name='username' class='form-control border-0 p-4' placeholder="Username" required>

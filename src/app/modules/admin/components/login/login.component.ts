@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
   public username: string = '';
   public password: string = '';
   @Output() authorize = new EventEmitter<string>();
+  @Input() error: boolean;
+  @Input() errorMessage: string;
 
   constructor() { }
 
