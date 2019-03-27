@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Tag } from '../models/tag';
 
 const httpOptions = {
@@ -29,8 +29,8 @@ export class TagService {
    * using the API.
    * @param tag 
    */
-  addItem(tag: object): Observable<Tag> {
-    return this.http.post<Tag>(this.tagsUrl+'saveTag', tag);
+  addItem(tag: object): Observable<HttpResponse<Tag>> {
+    return this.http.post<Tag>(this.tagsUrl+'saveTag', tag, {observe: 'response'});
   }
 
   /**
@@ -38,8 +38,8 @@ export class TagService {
    * using the API.
    * @param tag 
    */
-  updateTag(tag: object): Observable<Tag> {
-    return this.http.post<Tag>(this.tagsUrl+'saveTag', tag);
+  updateTag(tag: object): Observable<HttpResponse<Tag>> {
+    return this.http.post<Tag>(this.tagsUrl+'saveTag', tag, {observe: 'response'});
   }
 
   /**

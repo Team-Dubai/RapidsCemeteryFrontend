@@ -63,7 +63,16 @@ export class WrapperComponent implements OnInit {
       delete item.images;
       this.setSendItem(item);
       this.itemService.addItem(this.getSendItem())
-        .subscribe(item => this.items.push(item));
+        .subscribe(item => {
+          //Check the response, so we can respond accordingly
+          if(item.status !== 200) {
+            this.errorMessage = "Oops.. something went wrong. Please try again!"
+            this.error = true;
+          } else {
+            this.items.push(item.body);
+            this.error = false;
+          }
+        });
     }, 1000);
   }
 
@@ -88,7 +97,16 @@ export class WrapperComponent implements OnInit {
       delete item.images;
       this.setSendItem(item);
       this.itemService.updateItem(this.getSendItem())
-        .subscribe(item => this.setItemInItems(this.getItems().findIndex(i => i.id == changeItem.id), item));
+        .subscribe(item => {
+          //Check the response, so we can respond accordingly
+          if(item.status !== 200) {
+            this.errorMessage = "Oops.. something went wrong. Please try again!"
+            this.error = true;
+          } else {
+            this.setItemInItems(this.getItems().findIndex(i => i.id == changeItem.id), item.body);
+            this.error = false;
+          }
+        });
     }, 1000);
   }
 
@@ -127,7 +145,16 @@ export class WrapperComponent implements OnInit {
     //Update the tag in the local array, so it changes on screen without refreshing
     this.setSendTag(tag);
     this.tagService.addItem(this.getSendTag())
-      .subscribe(tag => this.tags.push(tag));
+      .subscribe(tag => {
+        //Check the response, so we can respond accordingly
+        if(tag.status !== 200) {
+          this.errorMessage = "Oops.. something went wrong. Please try again!"
+          this.error = true;
+        } else {
+          this.tags.push(tag.body);
+          this.error = false;
+        }
+      });
   }
 
   /**
@@ -144,7 +171,17 @@ export class WrapperComponent implements OnInit {
     //Update the item in the local array, so it changes on screen without refreshing
     this.setSendTag(tag);
     this.tagService.updateTag(this.getSendTag())
-      .subscribe(tag => this.setTagInTags(this.getTags().findIndex(i => i.id == changeTag.id), tag));
+      .subscribe(tag => {
+        //Check the response, so we can respond accordingly
+        if(tag.status !== 200) {
+          this.errorMessage = "Oops.. something went wrong. Please try again!"
+          this.error = true;
+          window.scroll(0,0);
+        } else {
+          this.setTagInTags(this.getTags().findIndex(i => i.id == changeTag.id), tag.body)
+          this.error = false;
+        }
+      });
   }
 
   /**
@@ -190,6 +227,8 @@ export class WrapperComponent implements OnInit {
       if(response.status !== 200) {
         this.errorMessage = "Oops.. something went wrong. Please try again!"
         this.error = true;
+      } else {
+        this.error = false;
       }
     });
   }

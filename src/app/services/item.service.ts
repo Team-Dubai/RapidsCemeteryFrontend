@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Item } from '../models/item';
 import { Observable } from 'rxjs';
 
@@ -29,8 +29,8 @@ export class ItemService {
    * using the API.
    * @param item 
    */
-  addItem(item: object): Observable<Item> {
-    return this.http.post<Item>(this.itemsUrl+'saveItem', item);
+  addItem(item: object): Observable<HttpResponse<Item>> {
+    return this.http.post<Item>(this.itemsUrl+'saveItem', item, {observe: 'response'});
   }
 
   /**
@@ -38,8 +38,8 @@ export class ItemService {
    * using the API.
    * @param item 
    */
-  updateItem(item: object): Observable<Item> {
-    return this.http.post<Item>(this.itemsUrl+'saveItem', item);
+  updateItem(item: object): Observable<HttpResponse<Item>> {
+    return this.http.post<Item>(this.itemsUrl+'saveItem', item, {observe: 'response'});
   }
 
   /**

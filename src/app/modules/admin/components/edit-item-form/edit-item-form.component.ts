@@ -46,6 +46,7 @@ export class EditItemFormComponent implements OnInit {
    */
   setupTags() {
     var checkedValues: string[] = []; 
+    this.checkedTags = [];
 
     for(var i = 0; i < this.tags.length; i++) {
       checkedValues.push(this.tags[i].name);
@@ -55,7 +56,6 @@ export class EditItemFormComponent implements OnInit {
     //Grab the elements and then loop through checking/unchecking the necessary tags
     var element = document.getElementsByClassName("form-check-label-edit");
     var elementInput = document.getElementsByClassName("form-check-input-edit");
-    console.log(elementInput.length);
     for(var i = 0; i < element.length; i++) {
       var ele = <HTMLLabelElement> element[i];
       var eleInput = <HTMLInputElement> elementInput[i];
@@ -73,9 +73,17 @@ export class EditItemFormComponent implements OnInit {
    * @param tag 
    */
   onCheckChange(tag: Tag) {
+    var isRemove = false;
+    //Loop through to see if we have the tag
+    for(var i = 0; i < this.checkedTags.length; i++) {
+      if(this.checkedTags[i].name === tag.name) {
+        isRemove = true;
+      }
+    }
+
     //If we have the tag, then remove it
     //else add it.
-    if(!this.checkedTags.includes(tag)) {
+    if(!isRemove) {
       this.checkedTags.push(tag);
     } else {
       for(var i = 0; i < this.checkedTags.length; i++){ 
@@ -193,3 +201,4 @@ export class EditItemFormComponent implements OnInit {
   }
 
 }
+
