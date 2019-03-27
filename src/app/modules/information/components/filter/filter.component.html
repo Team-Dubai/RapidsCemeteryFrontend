@@ -1,6 +1,6 @@
 <div class="container">
   <div class="text-right">
-    <button type="button" class="btn btn-dark" (click)="isCollapsed=!isCollapsed" [attr.aria-expanded]="!isCollapsed">Filters</button>
+    <button type="button" id="filter" class="btn btn-dark" (click)="isCollapsed=!isCollapsed" [attr.aria-expanded]="!isCollapsed">Filters</button>
   </div>
   <div id="collapseExample" [ngbCollapse]="isCollapsed">
     <div class="card">
