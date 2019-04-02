@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module'
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { 
@@ -18,7 +19,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    FormsModule
+    FormsModule,
+    NgbAlertModule
   ]
 })
 export class ContactModule { }
