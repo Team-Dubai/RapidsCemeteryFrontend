@@ -98,7 +98,7 @@ export class CardComponent implements OnInit {
           if(item[i].image === null) {
             continue;
           }
-          item[i].images = item[0].image.split(',');
+          item[i].images = item[i].image.split(',');
           item[i].image = item[i].images[0];
         }
         
@@ -122,7 +122,8 @@ export class CardComponent implements OnInit {
         if(item[i].image === null) {
           continue;
         }
-        item[i].images = item[0].image.split(',');
+
+        item[i].images = item[i].image.split(',');
         item[i].image = item[i].images[0];
       }
       

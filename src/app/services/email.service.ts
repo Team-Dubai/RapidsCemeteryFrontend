@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -20,7 +20,7 @@ export class EmailService {
    * using the API.
    * @param data 
    */
-  sendMessage(data: object): Observable<object> {
-    return this.http.post<object>(this.emailUrl+'sendContactMail', data);
+  sendMessage(data: object): Observable<HttpResponse<object>>  {
+    return this.http.post<object>(this.emailUrl+'sendContactMail', data, {observe: 'response'});
   }
 }

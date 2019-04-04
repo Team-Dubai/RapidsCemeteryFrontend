@@ -10,4 +10,5 @@ input, textarea, select {
 #checks {
     height: 200px;
     overflow: scroll;
+    margin-bottom: 1rem;
 }
