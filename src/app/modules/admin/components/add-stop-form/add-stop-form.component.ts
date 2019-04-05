@@ -51,6 +51,7 @@ export class AddStopFormComponent implements OnInit {
    */
   onChange(newValue: string) {
     var checkedValues: string[] = []; 
+    this.checkedItems = [];
 
     //If we have a value and its not null, then update its items
     if(newValue) {
