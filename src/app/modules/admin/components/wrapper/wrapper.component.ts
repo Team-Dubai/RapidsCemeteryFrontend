@@ -17,6 +17,8 @@ export class WrapperComponent implements OnInit {
   private tags: Tag[];
   private itemObject = {};
   private tagObject = {};
+  public success: boolean = false;
+  public successMessage: string = '';
   public error: boolean = false;
   public errorMessage: string = '';
 
@@ -65,13 +67,18 @@ export class WrapperComponent implements OnInit {
       this.itemService.addItem(this.getSendItem())
         .subscribe(item => {
           //Check the response, so we can respond accordingly
-          if(item.status !== 200) {
-            this.errorMessage = "Oops.. something went wrong. Please try again!"
-            this.error = true;
-          } else {
-            this.items.push(item.body);
+          if(item.status === 200) {
+            this.successMessage = item.body.name + " was successfully added!"
+            this.success = true;
             this.error = false;
+            this.items.push(item.body);
+          } else {
+            this.errorMessage = "Oops.. something went wrong. Please try again!"
+            this.success = false;
+            this.error = true;
           }
+
+          window.scroll(0,0);
         });
     }, 1000);
   }
@@ -99,13 +106,18 @@ export class WrapperComponent implements OnInit {
       this.itemService.updateItem(this.getSendItem())
         .subscribe(item => {
           //Check the response, so we can respond accordingly
-          if(item.status !== 200) {
-            this.errorMessage = "Oops.. something went wrong. Please try again!"
-            this.error = true;
-          } else {
-            this.setItemInItems(this.getItems().findIndex(i => i.id == changeItem.id), item.body);
+          if(item.status === 200) {
+            this.successMessage = item.body.name + " was successfully updated!"
+            this.success = true;
             this.error = false;
+            this.setItemInItems(this.getItems().findIndex(i => i.id == changeItem.id), item.body);
+          } else {
+            this.errorMessage = "Oops.. something went wrong. Please try again!"
+            this.success = false;
+            this.error = true;
           }
+
+          window.scroll(0,0);
         });
     }, 1000);
   }
@@ -124,13 +136,17 @@ export class WrapperComponent implements OnInit {
     this.itemService.deleteItem(itemIdObject).subscribe(response => {
       //Check the response, so we can respond accordingly
       if(response === true) {
-        this.items = this.items.filter(item => item.id !== parseInt(id));
+        this.successMessage = "Item was successfully deleted!"
+        this.success = true;
         this.error = false;
+        this.items = this.items.filter(item => item.id !== parseInt(id));
       } else {
         this.errorMessage = "Oops.. something went wrong. Please try again!"
+        this.success = false;
         this.error = true;
-        window.scroll(0,0);
       }
+
+      window.scroll(0,0);
     });
   }
 
@@ -147,13 +163,18 @@ export class WrapperComponent implements OnInit {
     this.tagService.addItem(this.getSendTag())
       .subscribe(tag => {
         //Check the response, so we can respond accordingly
-        if(tag.status !== 200) {
-          this.errorMessage = "Oops.. something went wrong. Please try again!"
-          this.error = true;
-        } else {
-          this.tags.push(tag.body);
+        if(tag.status === 200) {
+          this.successMessage = tag.body.name + " was successfully added!"
+          this.success = true;
           this.error = false;
+          this.tags.push(tag.body);
+        } else {
+          this.errorMessage = "Oops.. something went wrong. Please try again!"
+          this.success = false;
+          this.error = true;
         }
+
+        window.scroll(0,0);
       });
   }
 
@@ -173,14 +194,18 @@ export class WrapperComponent implements OnInit {
     this.tagService.updateTag(this.getSendTag())
       .subscribe(tag => {
         //Check the response, so we can respond accordingly
-        if(tag.status !== 200) {
-          this.errorMessage = "Oops.. something went wrong. Please try again!"
-          this.error = true;
-          window.scroll(0,0);
-        } else {
-          this.setTagInTags(this.getTags().findIndex(i => i.id == changeTag.id), tag.body)
+        if(tag.status === 200) {
+          this.successMessage = tag.body.name + " was successfully updated!"
+          this.success = true;
           this.error = false;
+          this.setTagInTags(this.getTags().findIndex(i => i.id == changeTag.id), tag.body)
+        } else {
+          this.errorMessage = "Oops.. something went wrong. Please try again!"
+          this.success = false;
+          this.error = true;
         }
+
+        window.scroll(0,0);
       });
   }
 
@@ -198,13 +223,17 @@ export class WrapperComponent implements OnInit {
     this.tagService.deleteTag(tagIdObject).subscribe(response => {
       //Check the response, so we can respond accordingly
       if(response === true) {
-        this.tags = this.tags.filter(tag => tag.id !== parseInt(id));
+        this.successMessage = "Item was successfully deleted!"
+        this.success = true;
         this.error = false;
+        this.tags = this.tags.filter(tag => tag.id !== parseInt(id));
       } else {
         this.errorMessage = "Oops.. something went wrong. Please try again!"
+        this.success = false;
         this.error = true;
-        window.scroll(0,0);
       }
+
+      window.scroll(0,0);
     });
   }
 
@@ -224,12 +253,17 @@ export class WrapperComponent implements OnInit {
 
     this.stopService.updateStop(stopObj).subscribe(response => {
       //Check the response, so we can respond accordingly
-      if(response.status !== 200) {
-        this.errorMessage = "Oops.. something went wrong. Please try again!"
-        this.error = true;
-      } else {
+      if(response.status === 200) {
+        this.successMessage = stopObj.stop.name + " was successfully updated!"
+        this.success = true;
         this.error = false;
+      } else {
+        this.errorMessage = "Oops.. something went wrong. Please try again!"
+        this.success = false;
+        this.error = true;
       }
+
+      window.scroll(0,0);
     });
   }
 

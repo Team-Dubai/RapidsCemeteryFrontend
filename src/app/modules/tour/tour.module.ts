@@ -9,7 +9,7 @@ import { WizardStepComponent } from './components/wizard-step/wizard-step.compon
 
 const routes: Routes = [
   { 
-    path: '', component: TourComponent, pathMatch: 'full', data: {title: 'Cemetery Tour'}
+    path: '', component: TourComponent, pathMatch: 'full', data: {title: 'Walking Tour'}
   }
 ];
 

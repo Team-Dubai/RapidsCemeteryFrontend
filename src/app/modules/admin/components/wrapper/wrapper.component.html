@@ -1,4 +1,5 @@
 <ngb-alert #err *ngIf="error === true" type="danger" [dismissible]="false">{{errorMessage}}</ngb-alert>
+<ngb-alert #success *ngIf="success === true" type="success" [dismissible]="false">{{successMessage}}</ngb-alert>
 <ngb-tabset type="pills">
   <ngb-tab title="Items">
     <ng-template ngbTabContent>

@@ -40,4 +40,9 @@ p {
     padding-top: 2rem;
     padding-left: 2rem;
     padding-right: 2rem;
+    white-space: pre-line;
+}
+
+.content {
+    padding-top: 0rem;
 }

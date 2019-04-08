@@ -1,6 +1,7 @@
 <form #deleteItemForm="ngForm" (ngSubmit)="onSubmit(deleteItemForm)" class="bg-white p-5">
   <h3>Delete Item</h3>
   <div class='form-group'>
+    <label>Choose an Item to Delete:</label>
     <select class='form-control' ngModel name="id">
       <option *ngFor="let item of items" [value]="item.id">
           {{item.id}}: {{item.name}}

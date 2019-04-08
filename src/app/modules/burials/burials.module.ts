@@ -8,7 +8,7 @@ import { ItemService } from 'src/app/services/item.service';
 
 const routes: Routes = [
   { 
-    path: '', component: BurialsComponent, pathMatch: 'full', data: {title: 'Cemetery Burials'}
+    path: '', component: BurialsComponent, pathMatch: 'full', data: {title: 'Complete List of Burials'}
   }
 ];
 

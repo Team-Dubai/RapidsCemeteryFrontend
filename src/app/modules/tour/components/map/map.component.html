@@ -64,14 +64,15 @@
             <img src="{{img}}" class="img-fluid mx-auto d-block" alt="" height="190" width="253">
         </div>
         <ng-container *ngIf="item.category === 'PLANT'; else burials">
-          <p><span class="font-weight-bold">Description: </span>{{item.description}}</p>
+          <p class="font-weight-bold">Description:</p>
+          <p class="content">{{item.description}}</p>
         </ng-container>
         <ng-template #burials>
           <ng-container>
-            <p><span class="font-weight-bold">Narrative: </span>{{item.description}}</p>
+            <p class="font-weight-bold">Narrative:</p>
+            <p class="content">{{item.description}}</p>
           </ng-container>
         </ng-template>
-        <p><span class="font-weight-bold">Plot Designation: </span>{{item.plot}}</p>
       </div>
     </wizard-step>
   </form-wizard>
