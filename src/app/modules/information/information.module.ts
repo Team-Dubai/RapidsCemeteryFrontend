@@ -12,7 +12,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { 
-    path: '', component: InformationComponent, pathMatch: 'full', data: {title: 'Informational Tour'}
+    path: '', component: InformationComponent, pathMatch: 'full', data: {title: 'Points of Interest'}
   }
 ];
 

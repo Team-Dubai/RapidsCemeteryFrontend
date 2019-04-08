@@ -19,3 +19,18 @@
 #filter-tip {
     padding-top: 2rem;
 }
+
+p {
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    white-space: pre-line;
+}
+
+img {
+    margin-top: 2rem;
+}
+
+.content {
+    padding-top: 0rem;
+}

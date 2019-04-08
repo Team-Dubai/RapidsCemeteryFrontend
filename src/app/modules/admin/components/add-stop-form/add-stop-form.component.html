@@ -1,12 +1,14 @@
 <form #addStopForm="ngForm" (ngSubmit)="onSubmit(addStopForm); addStopForm.reset()" ngNativeValidate class="bg-white p-5" enctype='multipart/form-data'>
   <h3>Edit Stop</h3>
   <div class='form-group'>
+    <label>Choose Stop:</label>
     <select class='form-control' [ngModel]="stop" (ngModelChange)="onChange($event)" name="name" required>
       <option></option>
       <option *ngFor="let stop of stops" value="{{stop.name}}">{{stop.name}}</option>
     </select>
   </div>
   <div id="checks">
+    <label>Check/Uncheck Items for Selected Stop:</label>
     <div *ngFor="let item of items" class="form-check">
       <input class="form-check-input" type="checkbox" value="{{item.name}}" id="{{item.id}}" name="{{item.name}}" (change)="onCheckChange(item)">
       <label class="form-check-label">{{item.name}}</label>

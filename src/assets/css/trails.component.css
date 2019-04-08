@@ -2,8 +2,11 @@ p {
     padding-left: 2rem;
     padding-right: 2rem;
     margin-bottom: 2rem;
+    white-space: pre-line;
 }
 
-img {
+iframe {
+    display: block;
+    margin: 0 auto;
     margin-bottom: 2rem;
 }

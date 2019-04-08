@@ -9,6 +9,7 @@ img {
 p {
     padding-left: 2rem;
     padding-right: 2rem;
+    white-space: pre-line;
 }
 
 a {

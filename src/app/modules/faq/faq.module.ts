@@ -8,7 +8,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { 
-    path: '', component: FaqComponent, pathMatch: 'full', data: {title: 'Frequently Asked Questions'}
+    path: '', component: FaqComponent, pathMatch: 'full', data: {title: 'FAQ'}
   }
 ];
 

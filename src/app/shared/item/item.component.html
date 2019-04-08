@@ -9,8 +9,8 @@
     <div *ngFor="let img of item.images">
       <img src="{{img}}" class="img-fluid" alt="">
     </div>
-    <p><span class="font-weight-bold">Description: </span>{{item.description}}</p>
-    <p><span class="font-weight-bold">Plot Designation: </span>{{item.plot}}</p>
+    <p class="font-weight-bold">Description:</p>
+    <p class="content">{{item.description}}</p>
   </div>
 </ng-container>
 <ng-template #burials>
@@ -47,7 +47,8 @@
       <div *ngFor="let img of item.images">
         <img src="{{img}}" class="img-fluid" alt="">
       </div>
-      <p><span class="font-weight-bold">Description: </span>{{item.description}}</p>
+      <p class="font-weight-bold">Description:</p>
+      <p class="content">{{item.description}}</p>
       <p><span class="font-weight-bold">Link: </span><a href="{{item.media}}">Take Me There!</a></p>
     </div>
   </ng-container>
@@ -63,6 +64,7 @@
       <div *ngFor="let img of item.images">
         <img src="{{img}}" class="img-fluid" alt="">
       </div>
-      <p><span class="font-weight-bold">Narrative: </span>{{item.description}}</p>
+      <p class="font-weight-bold">Narrative:</p>
+      <p class="content">{{item.description}}</p>
     </div>
   </ng-template>
