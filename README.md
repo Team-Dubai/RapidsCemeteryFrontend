@@ -18,9 +18,302 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Clone the repository to your machine. Once this has been completed, navigate to the project directory and run the command `npm install`. This will install all of the dependencies for the project. Now you can begin to edit the code.
 
-## File Structure
+## Folder/File Structure
 
 The Rapids Cemetery frontend code was designed to be efficient and easy to maintain. To achieve this, we have focused on high separation of concerns and simple file structuring.
+
+./src
+├── app
+│   ├── app-routing.module.ts
+│   ├── app.component.html
+│   ├── app.component.spec.ts
+│   ├── app.component.ts
+│   ├── app.module.ts
+│   ├── models
+│   │   ├── chronology-event.interface.ts
+│   │   ├── item.ts
+│   │   ├── stop.ts
+│   │   ├── tag.ts
+│   │   └── tour.ts
+│   ├── modules
+│   │   ├── about
+│   │   │   ├── about.module.ts
+│   │   │   ├── components
+│   │   │   │   └── paragraph
+│   │   │   │       ├── paragraph.component.css
+│   │   │   │       ├── paragraph.component.html
+│   │   │   │       ├── paragraph.component.spec.ts
+│   │   │   │       └── paragraph.component.ts
+│   │   │   └── view
+│   │   │       └── about
+│   │   │           ├── about.component.html
+│   │   │           ├── about.component.spec.ts
+│   │   │           └── about.component.ts
+│   │   ├── admin
+│   │   │   ├── admin.module.ts
+│   │   │   ├── components
+│   │   │   │   ├── add-item-form
+│   │   │   │   │   ├── add-item-form.component.css
+│   │   │   │   │   ├── add-item-form.component.html
+│   │   │   │   │   ├── add-item-form.component.spec.ts
+│   │   │   │   │   └── add-item-form.component.ts
+│   │   │   │   ├── add-stop-form
+│   │   │   │   │   ├── add-stop-form.component.css
+│   │   │   │   │   ├── add-stop-form.component.html
+│   │   │   │   │   ├── add-stop-form.component.spec.ts
+│   │   │   │   │   └── add-stop-form.component.ts
+│   │   │   │   ├── add-tag-form
+│   │   │   │   │   ├── add-tag-form.component.css
+│   │   │   │   │   ├── add-tag-form.component.html
+│   │   │   │   │   ├── add-tag-form.component.spec.ts
+│   │   │   │   │   └── add-tag-form.component.ts
+│   │   │   │   ├── delete-item-form
+│   │   │   │   │   ├── delete-item-form.component.css
+│   │   │   │   │   ├── delete-item-form.component.html
+│   │   │   │   │   ├── delete-item-form.component.spec.ts
+│   │   │   │   │   └── delete-item-form.component.ts
+│   │   │   │   ├── delete-stop-form
+│   │   │   │   │   ├── delete-stop-form.component.css
+│   │   │   │   │   ├── delete-stop-form.component.html
+│   │   │   │   │   ├── delete-stop-form.component.spec.ts
+│   │   │   │   │   └── delete-stop-form.component.ts
+│   │   │   │   ├── delete-tag-form
+│   │   │   │   │   ├── delete-tag-form.component.css
+│   │   │   │   │   ├── delete-tag-form.component.html
+│   │   │   │   │   ├── delete-tag-form.component.spec.ts
+│   │   │   │   │   └── delete-tag-form.component.ts
+│   │   │   │   ├── edit-item-form
+│   │   │   │   │   ├── edit-item-form.component.css
+│   │   │   │   │   ├── edit-item-form.component.html
+│   │   │   │   │   ├── edit-item-form.component.spec.ts
+│   │   │   │   │   └── edit-item-form.component.ts
+│   │   │   │   ├── edit-tag-form
+│   │   │   │   │   ├── edit-tag-form.component.css
+│   │   │   │   │   ├── edit-tag-form.component.html
+│   │   │   │   │   ├── edit-tag-form.component.spec.ts
+│   │   │   │   │   └── edit-tag-form.component.ts
+│   │   │   │   ├── forgot-password
+│   │   │   │   │   ├── forgot-password.component.css
+│   │   │   │   │   ├── forgot-password.component.html
+│   │   │   │   │   ├── forgot-password.component.spec.ts
+│   │   │   │   │   └── forgot-password.component.ts
+│   │   │   │   ├── login
+│   │   │   │   │   ├── login.component.css
+│   │   │   │   │   ├── login.component.html
+│   │   │   │   │   ├── login.component.spec.ts
+│   │   │   │   │   └── login.component.ts
+│   │   │   │   └── wrapper
+│   │   │   │       ├── wrapper.component.css
+│   │   │   │       ├── wrapper.component.html
+│   │   │   │       ├── wrapper.component.spec.ts
+│   │   │   │       └── wrapper.component.ts
+│   │   │   └── view
+│   │   │       └── admin
+│   │   │           ├── admin.component.css
+│   │   │           ├── admin.component.html
+│   │   │           ├── admin.component.spec.ts
+│   │   │           └── admin.component.ts
+│   │   ├── burials
+│   │   │   ├── burials.module.ts
+│   │   │   ├── components
+│   │   │   └── view
+│   │   │       └── burials
+│   │   │           ├── burials.component.html
+│   │   │           ├── burials.component.spec.ts
+│   │   │           └── burials.component.ts
+│   │   ├── contact
+│   │   │   ├── components
+│   │   │   │   └── form
+│   │   │   │       ├── form.component.css
+│   │   │   │       ├── form.component.html
+│   │   │   │       ├── form.component.spec.ts
+│   │   │   │       └── form.component.ts
+│   │   │   ├── contact.module.ts
+│   │   │   └── view
+│   │   │       └── contact
+│   │   │           ├── contact.component.html
+│   │   │           ├── contact.component.spec.ts
+│   │   │           └── contact.component.ts
+│   │   ├── faq
+│   │   │   ├── components
+│   │   │   │   └── q-a
+│   │   │   │       ├── q-a.component.css
+│   │   │   │       ├── q-a.component.html
+│   │   │   │       ├── q-a.component.spec.ts
+│   │   │   │       └── q-a.component.ts
+│   │   │   ├── faq.module.ts
+│   │   │   └── view
+│   │   │       └── faq
+│   │   │           ├── faq.component.html
+│   │   │           ├── faq.component.spec.ts
+│   │   │           └── faq.component.ts
+│   │   ├── home
+│   │   │   ├── components
+│   │   │   │   └── spotlight
+│   │   │   │       ├── spotlight.component.css
+│   │   │   │       ├── spotlight.component.html
+│   │   │   │       ├── spotlight.component.spec.ts
+│   │   │   │       └── spotlight.component.ts
+│   │   │   ├── home.module.ts
+│   │   │   └── view
+│   │   │       └── home
+│   │   │           ├── home.component.html
+│   │   │           ├── home.component.spec.ts
+│   │   │           └── home.component.ts
+│   │   ├── information
+│   │   │   ├── components
+│   │   │   │   ├── filter
+│   │   │   │   │   ├── filter.component.css
+│   │   │   │   │   ├── filter.component.html
+│   │   │   │   │   ├── filter.component.spec.ts
+│   │   │   │   │   └── filter.component.ts
+│   │   │   │   └── search
+│   │   │   │       ├── search.component.css
+│   │   │   │       ├── search.component.html
+│   │   │   │       ├── search.component.spec.ts
+│   │   │   │       └── search.component.ts
+│   │   │   ├── information.module.ts
+│   │   │   └── view
+│   │   │       └── information
+│   │   │           ├── information.component.html
+│   │   │           ├── information.component.spec.ts
+│   │   │           └── information.component.ts
+│   │   ├── plot
+│   │   │   ├── components
+│   │   │   │   └── loomis
+│   │   │   │       ├── loomis.component.css
+│   │   │   │       ├── loomis.component.html
+│   │   │   │       ├── loomis.component.spec.ts
+│   │   │   │       └── loomis.component.ts
+│   │   │   ├── plot.module.ts
+│   │   │   └── view
+│   │   │       └── plot
+│   │   │           ├── plot.component.html
+│   │   │           ├── plot.component.spec.ts
+│   │   │           └── plot.component.ts
+│   │   ├── timeline
+│   │   │   ├── components
+│   │   │   │   ├── chronology
+│   │   │   │   │   ├── chronology.component.css
+│   │   │   │   │   ├── chronology.component.html
+│   │   │   │   │   ├── chronology.component.spec.ts
+│   │   │   │   │   └── chronology.component.ts
+│   │   │   │   └── events
+│   │   │   │       ├── events.component.css
+│   │   │   │       ├── events.component.html
+│   │   │   │       ├── events.component.spec.ts
+│   │   │   │       └── events.component.ts
+│   │   │   ├── directives
+│   │   │   │   └── layout.directive.ts
+│   │   │   ├── timeline.module.ts
+│   │   │   └── view
+│   │   │       └── timeline
+│   │   │           ├── timeline.component.html
+│   │   │           ├── timeline.component.spec.ts
+│   │   │           └── timeline.component.ts
+│   │   ├── tour
+│   │   │   ├── components
+│   │   │   │   ├── map
+│   │   │   │   │   ├── map.component.css
+│   │   │   │   │   ├── map.component.html
+│   │   │   │   │   ├── map.component.spec.ts
+│   │   │   │   │   └── map.component.ts
+│   │   │   │   ├── wizard
+│   │   │   │   │   ├── wizard.component.spec.ts
+│   │   │   │   │   └── wizard.component.ts
+│   │   │   │   └── wizard-step
+│   │   │   │       ├── wizard-step.component.spec.ts
+│   │   │   │       └── wizard-step.component.ts
+│   │   │   ├── tour.module.ts
+│   │   │   └── view
+│   │   │       └── tour
+│   │   │           ├── tour.component.html
+│   │   │           ├── tour.component.spec.ts
+│   │   │           └── tour.component.ts
+│   │   └── trails
+│   │       ├── components
+│   │       ├── trails.module.ts
+│   │       └── view
+│   │           └── trails
+│   │               ├── trails.component.html
+│   │               ├── trails.component.spec.ts
+│   │               └── trails.component.ts
+│   ├── services
+│   │   ├── authentication.service.spec.ts
+│   │   ├── authentication.service.ts
+│   │   ├── email.service.spec.ts
+│   │   ├── email.service.ts
+│   │   ├── item.service.spec.ts
+│   │   ├── item.service.ts
+│   │   ├── stop.service.spec.ts
+│   │   ├── stop.service.ts
+│   │   ├── tag.service.spec.ts
+│   │   └── tag.service.ts
+│   └── shared
+│       ├── banner
+│       │   ├── banner.component.css
+│       │   ├── banner.component.html
+│       │   ├── banner.component.spec.ts
+│       │   └── banner.component.ts
+│       ├── card
+│       │   ├── card.component.css
+│       │   ├── card.component.html
+│       │   ├── card.component.spec.ts
+│       │   └── card.component.ts
+│       ├── footer
+│       │   ├── footer.component.html
+│       │   ├── footer.component.spec.ts
+│       │   └── footer.component.ts
+│       ├── item
+│       │   ├── item.component.css
+│       │   ├── item.component.html
+│       │   ├── item.component.spec.ts
+│       │   └── item.component.ts
+│       ├── navbar
+│       │   ├── navbar.component.html
+│       │   ├── navbar.component.spec.ts
+│       │   └── navbar.component.ts
+│       └── shared.module.ts
+├── assets
+│   ├── css
+│   │   ├── about.component.css
+│   │   ├── app.component.css
+│   │   ├── burials.component.css
+│   │   ├── contact.component.css
+│   │   ├── faq.component.css
+│   │   ├── footer.component.css
+│   │   ├── home.component.css
+│   │   ├── information.component.css
+│   │   ├── navbar.component.css
+│   │   ├── plot.component.css
+│   │   ├── timeline.component.css
+│   │   ├── tour.component.css
+│   │   └── trails.component.css
+│   ├── img
+│   │   ├── Unknown.png
+│   │   ├── banner.jpeg
+│   │   ├── cemeteryMap.png
+│   │   ├── historySpotlight.jpeg
+│   │   ├── logo.png
+│   │   ├── loomis.png
+│   │   ├── tourSpotlight.jpeg
+│   │   └── trailSpotlight.jpg
+│   └── libs
+│       └── README.md
+├── browserslist
+├── environments
+│   ├── environment.prod.ts
+│   └── environment.ts
+├── index.html
+├── karma.conf.js
+├── main.ts
+├── polyfills.ts
+├── styles.css
+├── test.ts
+├── tsconfig.app.json
+├── tsconfig.spec.json
+└── tslint.json
+
 
 ### Models
 
