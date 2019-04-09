@@ -22,7 +22,8 @@ Clone the repository to your machine. Once this has been completed, navigate to 
 
 The Rapids Cemetery frontend code was designed to be efficient and easy to maintain. To achieve this, we have focused on high separation of concerns and simple file structuring.
 
-./src
+```
+src
 ├── app
 │   ├── app-routing.module.ts
 │   ├── app.component.html
@@ -313,6 +314,7 @@ The Rapids Cemetery frontend code was designed to be efficient and easy to maint
 ├── tsconfig.app.json
 ├── tsconfig.spec.json
 └── tslint.json
+```
 
 
 ### Models
