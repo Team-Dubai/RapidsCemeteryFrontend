@@ -76,8 +76,8 @@
         </div>
       </ng-container>
     </ng-template>
+    <label>Check Associated Tags:</label>
     <div id="checks">
-      <label>Check Associated Tags:</label>
       <div *ngFor="let tag of tagsInput" class="form-check">
         <input class="form-check-input-edit" type="checkbox" [value]="{'id':tag.id,'name':tag.name}" id="{{tag.id}}" (change)="onCheckChange(tag)">
         <label class="form-check-label-edit">{{tag.name}}</label>
