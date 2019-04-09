@@ -22,31 +22,31 @@ Clone the repository to your machine. Once this has been completed, navigate to 
 
 The Rapids Cemetery frontend code was designed to be efficient and easy to maintain. To achieve this, we have focused on high separation of concerns and simple file structuring.
 
-models
+### Models
 
 Contains classes that represent API objects. This allows us to easily acquire all properties when retrieving objects from the backend API. 
 
-modules
+### Modules
 
 Contains all of the components used to build the interfaces and functionality for the application. Each component contains a component folder for its individual components as well as a view folder, which is responsible for displaying the content.
 
-services
+### Services
 
 Contains all of the services that are used to communicate with the API. A service is any code that must reference or call the API to GET or POST specific data.
 
-shared
+### Shared
 
 Contains all of the components that are shared or repeated multiple times within the application. Reference the modules section above for further information on its structure.
 
-assets
+### Assets
 
 Contains all of the assets within the site such as images and css styling.
 
-css
+#### css
 
 Contains all of the styles related to the parent components.
 
-images
+#### images
 
 Contains all of the static or unchanging images.
 
