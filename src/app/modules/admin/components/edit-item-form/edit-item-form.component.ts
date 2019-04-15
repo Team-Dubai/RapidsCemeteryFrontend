@@ -162,6 +162,10 @@ export class EditItemFormComponent implements OnInit {
       //Send the updated item to the parent
       this.update.emit(obj);
       this.displayEdit = false;
+
+      //Reset arrays
+      this.images = [];
+      this.checkedTags = [];
     } else {
       for(var i = 0; i < this.images.length; i++) {
         var fd = this.uploadFile(this.images[i]);
@@ -175,6 +179,10 @@ export class EditItemFormComponent implements OnInit {
           this.displayEdit = false;
         }
       }
+
+      //Reset arrays
+      this.images = [];
+      this.checkedTags = [];
     }
   }
 
