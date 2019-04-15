@@ -106,6 +106,10 @@ export class AddItemFormComponent implements OnInit {
       obj['images'] = 'https://res.cloudinary.com/deduiu1pn/image/upload/v1551723636/dvdmvgfsmpunrw7ql4ax.png';
       //Send the updated item to the parent
       this.add.emit(obj);
+
+      //Reset arrays
+      this.images = [];
+      this.checkedTags = [];
     } else {
       for(var i = 0; i < this.images.length; i++) {
         var fd = this.uploadFile(this.images[i]);
@@ -118,6 +122,10 @@ export class AddItemFormComponent implements OnInit {
           this.add.emit(obj);
         }
       }
+
+      //Reset arrays
+      this.images = [];
+      this.checkedTags = [];
     }
   }
 
