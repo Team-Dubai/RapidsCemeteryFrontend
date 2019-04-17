@@ -347,7 +347,7 @@ Contains all of the static or unchanging images.
 
 ## Making Changes
 
-If you’re making changes to the code, then branch off of dev (ensure you have the latest copy by pulling first). Once you have made all of your changes, then create a pull request for someone to review. After your code has been reviewed, then merge it into dev. This will trigger a build that will recompile the live code and update the public application.
+If you’re making changes to the code, then branch off of dev (ensure you have the latest copy by pulling first). Once you have made all of your changes, then create a pull request for someone to review. After your code has been reviewed, then merge it into dev. This will trigger a build that will recompile the live code and update the public application. Note: If you do not want to create a branch and would rather edit in dev, then you can all of your code in dev. Once you commit your changes to dev, a build will still be triggered.
 
 ### Development Server
 
