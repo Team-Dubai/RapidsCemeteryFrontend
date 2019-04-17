@@ -54,6 +54,9 @@ export class InformationComponent implements OnInit {
     //one item that matches the filter
     if(this.filter.length !== 0) {
       this.stops.forEach(stop => {
+        var eleRect = <HTMLElement> document.getElementsByClassName('rect')[stop.id-1];
+        var eleLetter = <HTMLElement> document.getElementsByClassName('letter')[stop.id-1];
+
         stop.items.forEach(item => {
           item.tags.forEach(tag => {
             if(this.filter.indexOf(tag.name) !== -1 && !result.includes(stop)) {
@@ -61,15 +64,27 @@ export class InformationComponent implements OnInit {
             }
           });
         });
+
+        //Show and hide elements on map
+        if(!result.includes(stop)) {
+          eleRect.style.display = "none";
+          eleLetter.style.display = "none";
+        } else {
+          eleRect.style.display = "block";
+          eleLetter.style.display = "block";
+        }
       });
-      /*var result = this.stops.filter(stop => {
-        stop.items.forEach(item => {
-          item.tags.some(tag => this.filter.indexOf(tag.name) !== -1)
-        });
-      });
-      
-      this.stops = result;*/
+
       this.stops = result;
+    } else {
+      //Loop through items and show them all since there are no filters
+      this.stops.forEach(stop => {
+        var eleRect = <HTMLElement> document.getElementsByClassName('rect')[stop.id-1];
+        var eleLetter = <HTMLElement> document.getElementsByClassName('letter')[stop.id-1];
+
+        eleRect.style.display = "block";
+        eleLetter.style.display = "block";
+      });
     }
   }
 
