@@ -18,6 +18,7 @@ export class EditItemFormComponent implements OnInit {
   public image: string = '';
   public images: string[] = [];
   public filename: string = '';
+  public filenames: string[] = [];
   public category: string = '';
   public dateOfBirth: string = '';
   public placeOfBirth: string = '';
@@ -167,23 +168,41 @@ export class EditItemFormComponent implements OnInit {
       this.images = [];
       this.checkedTags = [];
     } else {
-      for(var i = 0; i < this.images.length; i++) {
+      //Loop through and send the images to cloudinary
+      for(let i = 0; i < this.images.length; i++) {
         var fd = this.uploadFile(this.images[i]);
-        this.http.post(this.url, fd).subscribe(image => {
-          obj['images'].push(image['secure_url']);
-        });
-  
-        if(this.images.length-1 === i) {
-          //Send the updated item to the parent
-          this.update.emit(obj);
-          this.displayEdit = false;
-        }
+        this.http.post(this.url, fd).subscribe(image => this.editImages(obj, image['secure_url'], i, () => {
+          //Once we reach the end of the list, then send to the API
+          if(this.images.length-1 === i) {
+            this.sendUpdate(obj);
+          }
+        }));
       }
-
-      //Reset arrays
-      this.images = [];
-      this.checkedTags = [];
     }
+  }
+
+  /**
+   * Method that will tell the parent method to send the data to the API.
+   * @param obj 
+   */
+  sendUpdate(obj) {
+    //Send the updated item to the parent
+    this.update.emit(obj);
+    this.displayEdit = false;
+
+    //Reset arrays
+    this.images = [];
+    this.checkedTags = [];
+  }
+
+  /**
+   * Function that will add images to an object, then use
+   * a callback once completed. This is to ensure the image is
+   * not empty upon sending to the API.
+   */
+  editImages(obj, imageItem, index, callback) {
+    obj['images'].push(imageItem);
+    callback();
   }
 
   //MUTATORS
@@ -192,6 +211,7 @@ export class EditItemFormComponent implements OnInit {
     this.description = item.description;
     this.category = item.category;
     this.filename = item.image;
+    this.filenames = item.image.split(',');
     this.tags = item.tags;
     this.dateOfBirth = item.dateOfBirth;
     this.dateOfDeath = item.dateOfDeath;
