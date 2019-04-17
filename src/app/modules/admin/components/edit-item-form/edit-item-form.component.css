@@ -11,3 +11,7 @@ input, textarea, select {
     height: 150px;
     overflow: scroll;
 }
+
+#images-chosen {
+    display: block;
+}

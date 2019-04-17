@@ -41,4 +41,5 @@ img {
 
 .letter {
     cursor: pointer;
+    text-decoration: underline;
 }

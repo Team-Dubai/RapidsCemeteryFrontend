@@ -111,22 +111,39 @@ export class AddItemFormComponent implements OnInit {
       this.images = [];
       this.checkedTags = [];
     } else {
-      for(var i = 0; i < this.images.length; i++) {
+      //Loop through and send the images to cloudinary
+      for(let i = 0; i < this.images.length; i++) {
         var fd = this.uploadFile(this.images[i]);
-  
-        this.http.post(this.url, fd).subscribe(image => {
-          obj['images'].push(image['secure_url']);
-        });
-
-        if(this.images.length-1 === i) {
-          this.add.emit(obj);
-        }
+        this.http.post(this.url, fd).subscribe(image => this.addImages(obj, image['secure_url'], i, () => {
+          //Once we reach the end of the list, then send to the API
+          if(this.images.length-1 === i) {
+            this.sendAdd(obj);
+          }
+        }));
       }
-
-      //Reset arrays
-      this.images = [];
-      this.checkedTags = [];
     }
   }
 
+  /**
+   * Method that will tell the parent method to send the data to the API.
+   * @param obj 
+   */
+  sendAdd(obj) {
+    //Send the updated item to the parent
+    this.add.emit(obj);
+
+    //Reset arrays
+    this.images = [];
+    this.checkedTags = [];
+  }
+
+  /**
+   * Function that will add images to an object, then use
+   * a callback once completed. This is to ensure the image is
+   * not empty upon sending to the API.
+   */
+  addImages(obj, imageItem, index, callback) {
+    obj['images'].push(imageItem);
+    callback();
+  }
 }
