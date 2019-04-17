@@ -34,3 +34,11 @@ img {
 .content {
     padding-top: 0rem;
 }
+
+.filter {
+    display: none;
+}
+
+.letter {
+    cursor: pointer;
+}

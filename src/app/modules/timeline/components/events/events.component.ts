@@ -60,7 +60,7 @@ export class EventsComponent implements OnInit {
       title: '1840-65',
       content: [
         "Susan B. Anthony resides at her father's family farm on Rapids Road (Brooks Ave.)",
-        "Frederick Douglass joins the family for tea on Sundays and discuss Abolition issues"
+        "Frederick Douglass joins the family for tea on Sundays and they discuss Abolition issues"
       ]
     },
     {
@@ -150,7 +150,7 @@ export class EventsComponent implements OnInit {
       content: [
         "Civil War Centennial commemorated with new headstones for Civil War veterans",
         "Cemetery continues to be used as a neighborhood sports field. Northern section overgrown",
-        "Proposal to use site for Veterans housing runs into legal challenges, Dropped"
+        "Proposal to use site for Veterans housing runs into legal challenges and is dropped"
       ]
     },
     {
