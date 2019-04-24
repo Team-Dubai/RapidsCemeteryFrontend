@@ -1,0 +1,9 @@
+<banner></banner>
+<div class="container">
+    <p>We encourage you to share your feedback with us (The 19th Ward Community Association) 
+        on your experience with this tour of Rapids Cemetery. Let us know about your exploration 
+        of our nearby historical trails. Also, please visit us at <a href="https://19wca.org/">19wca.org</a>.</p>
+    <ngb-alert #success *ngIf="success === true" type="success" [dismissible]="false">{{successMessage}}</ngb-alert>
+    <ngb-alert #err *ngIf="error === true" type="danger" [dismissible]="false">{{errorMessage}}</ngb-alert>
+</div>
+<app-form (send)="onSendForm($event)"></app-form>

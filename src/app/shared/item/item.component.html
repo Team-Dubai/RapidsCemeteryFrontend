@@ -1,0 +1,70 @@
+<ng-container *ngIf="whichItem === 'info'; else burials">
+  <div class="modal-header">
+    <h4 class="modal-title">{{item.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngFor="let img of item.images">
+      <img src="{{img}}" class="img-fluid" alt="">
+    </div>
+    <p class="font-weight-bold">Description:</p>
+    <p class="content">{{item.description}}</p>
+  </div>
+</ng-container>
+<ng-template #burials>
+  <ng-container *ngIf="whichItem === 'burial'; else trails">
+    <div class="modal-header">
+      <h4 class="modal-title">{{item.name}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let img of item.images">
+          <img src="{{img}}" class="img-fluid" alt="">
+        </div>
+        <p><span class="font-weight-bold">Date of Birth: </span>{{item.dateOfBirth}}</p>
+        <p><span class="font-weight-bold">Place of Birth: </span>{{item.placeOfBirth}}</p>
+        <p><span class="font-weight-bold">Date of Death: </span>{{item.dateOfDeath}}</p>
+        <p><span class="font-weight-bold">Place of Death: </span>{{item.placeOfDeath}}</p>
+        <p><span class="font-weight-bold">Plot Designation: </span>{{item.plot}}</p>
+        <p><span class="font-weight-bold">Veteran Information: </span>{{item.veteranInformation}}</p>
+        <p><span class="font-weight-bold">Notes: </span>{{item.notes}}</p>
+    </div>
+  </ng-container>
+</ng-template>
+<ng-template #trails>
+  <ng-container *ngIf="whichItem === 'trail'; else completeBurial">
+    <div class="modal-header">
+      <h4 class="modal-title">{{item.name}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div *ngFor="let img of item.images">
+        <img src="{{img}}" class="img-fluid" alt="">
+      </div>
+      <p class="font-weight-bold">Description:</p>
+      <p class="content">{{item.description}}</p>
+      <p><span class="font-weight-bold">Link: </span><a href="{{item.media}}">Take Me There!</a></p>
+    </div>
+  </ng-container>
+</ng-template>
+<ng-template #completeBurial>
+  <div class="modal-header">
+    <h4 class="modal-title">{{item.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+      <div *ngFor="let img of item.images">
+        <img src="{{img}}" class="img-fluid" alt="">
+      </div>
+      <p class="font-weight-bold">Narrative:</p>
+      <p class="content">{{item.description}}</p>
+    </div>
+  </ng-template>

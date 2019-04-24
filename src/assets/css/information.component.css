@@ -1,0 +1,46 @@
+::ng-deep .card .card-header > h5 > button {
+    color: #1d2124;
+    text-decoration: none;
+    text-align: left;
+}
+
+.rect {
+    fill: none;
+    stroke: yellow;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+}
+
+.letter {
+    fill: yellow;
+    font-size: 24px;
+    stroke-width: 2px;
+}
+
+#filter-tip {
+    padding-top: 2rem;
+}
+
+p {
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    white-space: pre-line;
+}
+
+img {
+    margin-top: 2rem;
+}
+
+.content {
+    padding-top: 0rem;
+}
+
+.filter {
+    display: none;
+}
+
+.letter {
+    cursor: pointer;
+    text-decoration: underline;
+}

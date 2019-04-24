@@ -1,0 +1,13 @@
+form {
+    border: 1px solid rgba(0,0,0,.125);
+    margin-top: 1rem;
+}
+
+input, textarea, select {
+    background-color: #f6f7f8;
+}
+
+#checks {
+    height: 150px;
+    overflow: scroll;
+}

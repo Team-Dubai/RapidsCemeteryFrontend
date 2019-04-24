@@ -1,0 +1,71 @@
+<div class="container">
+  <!--<search></search>-->
+  <div class="row">
+    <ng-container *ngIf="whichItem === 'info'; else burials">
+      <div class="col-sm-6 col-lg-3" *ngFor='let item of getItems()'>
+        <div class="card" (click)="open(item.id)">
+          <img src="{{item.image}}" class="card-img-top" height="190" width="253" alt="">
+          <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #burials>
+      <ng-container *ngIf="whichItem === 'burial'; else trails">
+        <div class="col-sm-6 col-lg-3" *ngFor='let item of getBurials()'>
+          <div class="card" (click)="open(item.id)">
+            <img src="{{item.image}}" class="card-img-top" height="190" width="253" alt="">
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-template>
+    <ng-template #trails>
+      <ng-container *ngIf="whichItem === 'trail'; else completeBurial">
+        <div class="col-sm-6 col-lg-3" *ngFor='let item of getTrails()'>
+          <div class="card" (click)="open(item.id)">
+            <img src="{{item.image}}" class="card-img-top" height="190" width="253" alt="">
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-template>
+    <ng-template #completeBurial>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Date of Birth</th>
+              <th scope="col">Place of Birth</th>
+              <th scope="col">Date of Death</th>
+              <th scope="col">Place of Death</th>
+              <th scope="col">Plot</th>
+              <th scope="col">Veteran Information</th>
+              <th scope="col">Notes</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let item of getBurials()'>
+              <th>{{item.name}}</th>
+              <td>{{item.dateOfBirth}}</td>
+              <td>{{item.placeOfBirth}}</td>
+              <td>{{item.dateOfDeath}}</td>
+              <td>{{item.placeOfDeath}}</td>
+              <td>{{item.plot}}</td>
+              <td>{{item.veteranInformation}}</td>
+              <td>{{item.notes}}</td>
+              <td class="more-info" (click)="open(item.id)">View More</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
+  </div>
+</div>

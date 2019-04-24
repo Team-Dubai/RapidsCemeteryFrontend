@@ -1,0 +1,32 @@
+.card {
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+img {
+    object-fit: cover;
+}
+
+.container {
+    margin-bottom: -2rem;
+}
+
+.more-info:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* TABLE STYLES TAKEN FROM: https://www.codeply.com/go/OAEz9LcQ0T/bootstrap-fixed-table-header */
+/*@media only screen and (min-width: 992px) {
+    tbody {
+        display: block;
+        height: 400px;
+        overflow: auto;
+    }
+    
+    thead, tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+    }
+}*/

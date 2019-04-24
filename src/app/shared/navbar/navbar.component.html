@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light shadow fixed-top">
+  <a class="navbar-brand" routerLink="/home">
+    <img src="../../../assets/img/logo.png" height="50" width="50" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed" [attr.aria-expanded]="!isCollapsed">
+    <span>Menu</span>
+    <!--<span class="navbar-toggler-icon"></span>-->
+  </button>
+  <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">Home</a>
+      </li>
+      <li ngbDropdown class="nav-item dropdown" role="button" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownOne" ngbDropdownToggle>Cemetery Tour</a>
+        <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownOne">
+          <a class="dropdown-item" routerLink="/tour/walking" (click)="isCollapsed=!isCollapsed">Walking Tour</a>
+          <a class="dropdown-item" routerLink="/tour/information" (click)="isCollapsed=!isCollapsed">Areas of Interest</a>
+        </div>
+      </li>
+      <li ngbDropdown class="nav-item dropdown" role="button" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownTwo" ngbDropdownToggle>History</a>
+        <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="navbarDropdownTwo">
+          <a class="dropdown-item" routerLink="/history/plot" (click)="isCollapsed=!isCollapsed">Loomis Cemetery Plot Map</a>
+          <a class="dropdown-item" routerLink="/history/timeline" (click)="isCollapsed=!isCollapsed">Timeline</a>
+          <a class="dropdown-item" routerLink="/history/burials" (click)="isCollapsed=!isCollapsed">Complete List of Burials</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/trails" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">Nearby Historical Trails</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/faq" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">FAQ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/contact" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin" routerLinkActive="active" (click)="isCollapsed=!isCollapsed">Administration</a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,48 @@
+.rect {
+    fill: none;
+    stroke: yellow;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+}
+
+.letter {
+    fill: yellow;
+    font-size: 24px;
+    cursor: pointer;
+    stroke-width: 2px;
+}
+
+#active-rect {
+    stroke: blue;
+    stroke-width: 2px;
+}
+
+#active-letter {
+    fill: blue;
+    stroke-width: 2px;
+}
+
+h4 {
+    padding-top: 2rem;
+}
+
+h1 {
+    padding-top: 2rem;
+    padding-left: 2rem;
+}
+
+img {
+    margin-top: 2rem;
+    object-fit: cover;
+}
+
+p {
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    white-space: pre-line;
+}
+
+.content {
+    padding-top: 0rem;
+}
